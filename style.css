@@ -101,3 +101,21 @@ ul {
     list-style-position: outside; /* Places bullets correctly */
     padding-left: 20px;
 }
+
+.publication-list {
+    list-style-type: disc; /* Ensure bullets appear */
+    list-style-position: outside; /* Place bullets outside the text */
+    padding-left: 40px; /* Space between bullet and text */
+}
+
+.publication-list li {
+    position: relative; /* Helps maintain text alignment */
+    padding-left: 10px; /* Adjusts spacing between bullet and text */
+    margin-bottom: 15px; /* Space between publications */
+}
+
+.publication-title, .authors, .journal, .conference {
+    display: block; /* Ensures each item is properly spaced */
+    margin-left: 0; /* Avoids unintended left shifts */
+}
+
