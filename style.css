@@ -98,7 +98,7 @@ footer {
 
 .publication-title {
     font-size: 50px; /* Adjust as needed, use px or rem */
-    font-weight: bold;
+     font-weight: normal;   
 }
 
 .authors,
