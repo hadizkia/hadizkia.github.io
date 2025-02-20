@@ -88,19 +88,26 @@ footer {
     width: 100%;
 }
 .publication-list {
-    list-style-position: inside; /* Ensures bullets align properly */
-    padding-left: 40px; /* Adjusts spacing */
+    /* removed list-style-position and padding-left */
+}
+
+.publication {
+    /* added publication class */
+    margin-bottom: 20px; /* add spacing between publications */
 }
 
 .publication-title {
-    font-size: 10.8em; /* Adjust as needed */
+    font-size: 24px; /* Adjust as needed, use px or rem */
     font-weight: bold;
 }
 
-.authors, .journal, .conference {
-    font-size: 1.5em; /* Adjust as needed */
+.authors,
+.journal,
+.conference {
+    font-size: 16px; /* Adjust as needed, use px or rem */
 }
 
 .publication-links a {
-    font-size: 1.3em; /* Adjust as needed */
+    font-size: 14px; /* Adjust as needed, use px or rem */
+    margin-right: 10px; /* add spacing between links */
 }
