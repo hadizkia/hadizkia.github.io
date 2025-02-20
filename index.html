@@ -1,328 +1,79 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <meta name="description" content="Hadi Zanganeh Kia's Personal Site"/>
-    <meta name="keywords" content="Hadi Zanganeh Kia"/>
-    <meta name="author" content="Aaviya"/>
-    <link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css'>
-    <link type="text/css" rel="stylesheet" href="style.css" media="screen"/>
-    <script src="js/jquery-1.9.1.js"></script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-121350033-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-121350033-1');
-    </script>
-    <title>Hadi Zanganeh Kia</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hadi Zanganeh Kia | Atmospheric Scientist</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-<div id="mainwrap">
-
     <header>
-        <h1 style="color: white; font-size: 30px ">Hadi Zanganeh Kia</h1>
-        <ul id="menu">
-            <li><a class="profile" href="#profile" title="Profile">Profile</a><span>About Me</span></li>
-            <li><a class="projects" href="#projects" title="Projects">Projects</a><span>and Research Experiences</span></li>
-            <li><a class="publications" href="#publications" title="Publications">Publications</a><span>and Technical Reports</span>
-            </li>
-            <li><a class="contact" href="#contact" title="Contact">Contact</a><span>Get in touch</span></li>
-        </ul>
+        <div class="container">
+            <img src="assets/profile.jpg" alt="Hadi Zanganeh Kia" class="profile-img">
+            <h1>Hadi Zanganeh Kia</h1>
+            <p>PhD Candidate in Atmospheric Sciences | Computational Fluid Dynamics | Data Science | Environmental Modeling</p>
+        </div>
     </header>
-    <div style="clear:both"></div>
-    <div id="content">
-        <div id="profile" class="section">
-            <div class="column col3">
-                <table id="bioinfo">
-                    <tbody>
-                    <tr>
-                        <td class="odd">Name</td>
-                        <td class="even">Hadi Zanganeh Kia</td>
-                    </tr>
-                    <tr>
-                        <td class="odd">Date of birth</td>
-                        <td class="even">July 20, 1994</td>
-                    </tr>
-                    <tr>
-                        <td class="odd">Originally from</td>
-                        <td class="even">Tehra, Iran</td>
-                    </tr>
-                    <tr>
-                        <td class="odd">Languages</td>
-                        <td class="even">Persian, English, Turkish</td>
-                    </tr>
-                    <tr>
-                        <td class="odd">Email</td>
-                        <td class="even">mohammadjv94@gmail.com</td>
-                    </tr>
-                    </tbody>
-                </table>
-                <h1>Topics of Interest</h1>
-                <ul id="research" style="list-style-type:disc">
-                    <li>Computer Vision</li>
-                    <li>Deep Learning</li>
-                    <li>Digital Image Processing</li>
-                    <li>Computer Vision Neuro Science</li>
-                    <li>Bioinformatics</li>
-                    <li>Intelligent Robotics</li>
-                </ul>
+
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <p>I am a PhD candidate in Atmospheric Sciences at the University of Houston. My research focuses on urban micro-climate simulations, CFD, and predictive meteorology using deep learning. I also work with large-scale numerical simulations, air quality forecasting, and developing predictive models for atmospheric dynamics.</p>
+        </div>
+    </section>
+
+    <section id="education">
+        <div class="container">
+            <h2>Education</h2>
+            <ul>
+                <li><strong>PhD, Atmospheric Sciences</strong> - University of Houston (GPA: 3.95) 2022–Aug 2025</li>
+                <li><strong>Master, Mechanical Engineering</strong> - University of Tehran (GPA: 3.77) 2016–2019</li>
+                <li><strong>Bachelor, Mechanical Engineering</strong> - K.N.Toosi University of Technology (GPA: 3.24) 2011–2015</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2>Projects</h2>
+            <div class="project">
+                <h3>Urban Micro-Climate Simulation & Predictive Meteorology</h3>
+                <p>Developed numerical solvers for PDEs and integrated Deep-CNN to forecast meteorological parameters such as cloud fraction and solar energy. Conducted large-scale simulations using OpenFOAM and WRF.</p>
             </div>
-            <div class="column col5 pl-50">
-                <div class="pic"><img src="img/combined_building_elevations.png" style="border-radius: 240px" height="230" width="230" alt="Hadi Zanganeh Kia" /></div>
-                </br>
-                <p>B.Sc student in Computer Engineering and Information Technology at <a href="http://www.aut.ac.ir/aut/fa/">Amirkabir University
-                    of Technology</a> (Tehran Polytechnic).</br></br>
-                    Diploma in Mathematics and Physics, Allame Helli(2) High School,
-                    Tehran, Iran, 2013. </p>
-                <p><a href="./reports/CV_MohammadJavadi.pdf">Download PDF CV</a></p>
+            <div class="project">
+                <h3>PM2.5 Forecasting with Deep Learning</h3>
+                <p>Implemented hybrid models to forecast air pollution concentrations using time-series analysis and deep learning algorithms (DeepAR).</p>
+            </div>
+            <div class="project">
+                <h3>CFD Simulation of Metro Tunnel Ventilation</h3>
+                <p>Optimized ventilation systems for metro tunnels using Ansys Fluent and CFD simulations to improve airflow and safety.</p>
             </div>
         </div>
+    </section>
 
-        <div id="projects" class="section">
-            <br />
-            <br />
-            <table id="cv">
-                <tbody>
-                <tr>
-                    <td class="col2">
-                        <div class="date">Cognitive Robotics Lab - May 2018 - June 2018 </div>
-                    </td>
-                    <td class="col6 pl-30">
-                        <p class="company"> Burgard Exploration in ROS-based Virtual Robots</p>
-                        <p class="title">Amirkabir University of Technology, Tehran, Iran</p>
-                        <p class="description">
-                            In this work we implemented the <span style="font-weight: bold">Burgard Exploration</span> as a ROS node.
-                            This node subscribes to the published information from the Gazebo environment, scanning laser rangefinder, and the other robots, and then, selects a point
-                            on a shared map to explore. The communication between robots is done through the ROSCORE.<br>
-                            The source code is developed in a private repository.
-                        </p>
-                        <br />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col2">
-                        <div class="date">Cognitive Robotics Lab - September 2017 - March 2018 </div>
-                    </td>
-                    <td class="col6 pl-30">
-                        <p class="company"> Zoom-RNN: A Novel Method for Person Recognition Using Recurrent Neural Networks</p>
-                        <p class="title">Amirkabir University of Technology, Tehran, Iran</p>
-                        <p class="description">
-                            In this research, we introduced a novel method to improve <span style="font-weight: bold">Person Recognition</span> task's accuracy
-                            on Person In Photo Albums(PIPA) dataset by integration of
-                            <span style="font-weight: bold">Recurrent Neural Networks</span> and feature fusion from the different body parts.<br>
-                            The paper was submitted for <a style="color: blue;" href="https://eccv2018.org/">ECCV2018</a>.
-                        </p>
-                        <br />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col2">
-                        <div class="date">Cognitive Robotics Lab - October 2017 - April 2018</div>
-                    </td>
-                    <td class="col6 pl-30">
-                        <p class="company">Vehicle Registration Plate Recognition using CNNs, my BSc Thesis</p>
-                        <p class="title">Amirkabir University of Technology, Tehran, Iran</p>
-                        <p class="description">In this project, that was my bachelor thesis, a two-stage system is implemented
-                            for detection and recognition of the Persian plates in urban traffic cameras. <br>
-                            For <span style="font-weight: bold">Plate Detection </span> phase, that finds the location of the plates in each frame of the test video,
-                            the Faster-RCNN method is used that generates plates' bounding boxes. <br/>
-                            Next level, <span style="font-weight: bold">Plate Recognition</span>, that predicts ID of the detected plates and actually behaves as an OCR
-                            module, includes two sub-levels: <br>
-                            First, image segmentation and some low-level image processing algorithms are used to find character contours
-                            in the plate. Then, a deep convolutional neural network(SqueezeNet) with 22 classes is used to calculate the type of each character. <br>
-                            Implementation of the project is available on <a style="color: blue;" href="https://github.com/mammadjv/vehicle-registration-plate-recognition">Github</a>.
-                        </p>
-                        <div class="pic"><img src="https://raw.githubusercontent.com/mammadjv/vehicle-registration-plate-recognition/master/demo/detection.gif" alt="fig1" /></div>
-                        <br />
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col2">
-                        <div class="date">Bio-Inspired System Design Laboratory - Spring 2017</div>
-                    </td>
-                    <td class="col6 pl-30">
-                        <p class="company">Humanoid Robot Detection Using Deep Learning: A Speed-Accuracy Trade-off</p>
-                        <p class="title">Amirkabir University of Technology, Tehran, Iran</p>
-                        <p class="description">We compare several two-stage detection systems based on various CNN's
-                            and highlight their speed-accuracy trade off. The approach performs edge based image segmentation
-                            in order to reduce the search space and then a CNN validates the detection in the second stage.
-                            Paper were published in RoboCup Symposium 2017.
-                            <a style="color: blue;" href="https://www.robocup2017.org/file/symposium/RoboCup_Symposium_2017_paper_41.pdf">(paper Link)</a>
-                            Codes are available on <a style="color: blue;" href="https://github.com/AUTManLab/HumanoidBodyDetection">Github</a>.
-                        </p>
-                        <div class="pic"><img src="img/ProposedApproach.png" alt="fig1"/></div>
-                        <br />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col2">
-                        <div class="date">Bio-Inspired System Design Laboratory - Started February 2016, Ended May 2017</div>
-                    </td>
-                    <td class="col6 pl-30">
-                        <p class="company">Humanoid Robot Localization using Particle Filter</p>
-                        <p class="title">Amirkabir University of Technology, Tehran, Iran</p>
-                        <p class="description">
-                            As humans model their environment, humanoids also must do it to be aware of world model and make appropriate decisions in a timely manner.
-                            For this purpose, based on statistical analysis(Particle Filter and Monte Carlo methods) and using provided perception data(goals, lines, landmarks, and center circle in a soccer field)
-                            by humanoid vision module, we can use relative distances to our self in order to find our location in a soccer field.
-                            Source code is not released because of the team rules.
-                        </p>
-                        <div class="pic"><img src="img/particle_filter.png" alt="fig1" height="300" width="500" /></div>
-                        <br />
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col2">
-                        <div class="date">Hirad Design and Construction Co - started February 2016 , ended February 2017</div>
-                    </td>
-                    <td class="col6 pl-30">
-                        <p class="company"> Mobile Application Development for Home Automation</p>
-                        <p class="title">Advanced Technology Centre of Amirkabir University of Technology, Tehran, Iran</p>
-                        <p class="description">
-                            A smart home involves the control and automation of lighting, heating, ventilation, air conditioning, security and etc.
-                            In this project, I implemented a cross-platform application(can be used in Android, iOS, BlackBerry and Desktop platform)
-                            using Qt library which enables users to control a smart house through wifi. <br />
-                            Details of the product is available <a style="color: blue" href="http://hiradbms.com/fa/">here</a>.
-                        </p>
-                        <br />
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col2">
-                        <div class="date">Mobin Intelligent System - started October 2015 , ended February 2016</div>
-                    </td>
-                    <td class="col6 pl-30">
-                        <p class="company"> A Base Code for License Plate Detection</p>
-                        <p class="title">Mobin Intelligent System , Tehran, Iran</p>
-                        <p class="description">
-                            Detection and recognition of vehicle registration plate in urban traffic cameras were the goals of our system.
-                            The constraint of this project was the system processor that was a DSP board and forced us not to use 
-                            high-level c++ libraries(like OpenCV, Qt and etc).  <br />
-                            For mentioned purpose and problem, I implemented a low-level image processing framework which contains some basic
-                            functions(matrix operations, filters, convolutions, edge-based methods and etc.),
-                            as they are implemented in OpenCV library. <br />
-                            In another level of the work, in the task of plate detection, me and my other teammates studied about
-                            HOG(Histogram of Oriented Gradients) and ACF(Aggregate Channel Features) features on image, and we believed
-                            that in our task, ACF features are more useful. <br />
-                            As is mentioned above, the processor was a DSP board and it wasn't feasible to use <a style="color: blue;"  href="https://gitlab.com/EAVISE/publicwiki/wikis/acf-dollar-toolbox">ACF detector</a>
-                            (implemented in Matlab by <a style="color: blue;" href="https://scholar.google.com/citations?user=a8Y2OJMAAAAJ">Piotr Dollár</a> et al.) directly. So another team was hired to convert the source code to low-level C++ code. <br />
-                        </p>
-                        <br />
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col2">
-                        <div class="date">Amirkabir Robotic Center - started September 2014 , ended June 2017</div>
-                    </td>
-                    <td class="col6 pl-30">
-                        <p class="company"> A High Speed Vision System for Humanoid Soccer Player Robots</p>
-                        <p class="title">Amirkabir University of Technology, Tehran, Iran</p>
-                        <p class="description">
-                            In this research, we implemented a high-speed cognition module for AUTMan Humanoid Robotic Team.
-                            The outputs(ball, goal posts, lines, center-circle, and obstacles) of the system are considered as inputs to localization and behavior modules.
-                            Challenges of the project are: <br />
-                            1- Humanoids suffer from low-frequency processors, like our platform which has an Intel Celeron Dual Core 1.10GHz processor.<br />
-                            2- Although robots in the soccer game field are placed in a high color information environment, many objects in the field have similarity in terms of color. This problem makes us use an edge-based color-aided method. <br />
-                            Our Algorithm's average frequency is 25-30 Hz which seems appropriate for a humanoid robot.
-                            <!--A complete description of our algorithm is explained <a style="color: blue;" href="#">here</a>.-->
-                        </p>
-                        <div class="pic"><img src="img/vision_test.png" alt="fig1" height="300" width="500"/></div>
-                        <br />
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+    <section id="publications">
+        <div class="container">
+            <h2>Publications</h2>
+            <ul>
+                <li><strong>Zanganeh Kia, H., et al. (2023). </strong> Large eddy simulation of sneeze plumes. *Science of The Total Environment*.</li>
+                <li><strong>Yang, F., Zanganeh Kia, H., et al. (2024). </strong> Impact of surface topography on Rayleigh-Bénard convection. *International Journal of Heat and Mass Transfer*.</li>
+                <li><strong>Wang, A., Zanganeh Kia, H., et al. (2024). </strong> Wall Flux Intercomparisons of Turbulent Thermal Convection. *Physics of Fluids*.</li>
+            </ul>
         </div>
+    </section>
 
-
-        <div id="publications" class="section">
-            <table id="cv">
-                <tbody>
-                <tr>
-                    <td class="col6 pl-30">
-                        <p class="teach">Publications</p>
-                        <lu style="list-style-type:disc">
-                            <li class="pubs">Azar SM, Azami S, Ghadimi M, <span style="font-weight: bold">Javadi M</span>, Nickabadi A. Zoom-RNN: A Novel
-                                Method for Person Recognition Using Recurrent Neural Networks, submitted for
-                                ECCV 2018(Rejected)
-                                <a href="https://arxiv.org/abs/1809.09189">(Link)</a>.
-                            </li>
-                        </lu>
-                        <lu style="list-style-type:disc">
-                            <li class="pubs"> <span style="font-weight: bold">Javadi M</span>, Azar SM, Azami S, Shiry S, Ghidary SS, Baltes J. Humanoid Robot Detection using Deep Learning: A Speed-Accuracy Tradeoff,
-                                International Robocup Symposium, July 2017
-                                <a href="https://www.robocup2017.org/file/symposium/RoboCup_Symposium_2017_paper_41.pdf">(Link)</a>.
-                            </li>
-                        </lu>
-                        <p class="teach">Technical Reports</p>
-                        <lu style="list-style-type:disc">
-                            <li class="pubs">
-                                Sadeghnejad S, Baltes J, Ramezani S, Javadi M, Karimi M, Valaei A, Santos J, Poon T, Yazadnkhou B, Alihosseini D, Hosseini MS. AUTMan Humanoid TeenSize Team Description Paper.
-                                <a href="http://www.ais.uni-bonn.de/robocup.de/2016/TDPs/Humanoid/RoboCup_2016_Humanoid_TeenSize_TDP_AUTMan.pdf">(Link)</a>
-                            </li>
-                        </lu>
-                        <lu style="list-style-type:disc">
-                            <li class="pubs">
-                                Sadeghnejad S, Baltes J, Ramezani S, Karimi M, Javadi M, Karimi M, Valaei A, Ahmadi A, Hosseinmemar A, Santos J, Poon T, Shamshirdar F, Heydari M, Azari B, Behjou S.
-                                AUT-UofM Humanoid TeenSize Team Description Paper RoboCup 2015 Humanoid TeenSize Robot League.
-                                <a href="http://robocup2015.oss-cn-shenzhen.aliyuncs.com/TeamDescriptionPapers/Humanoid/RoboCup_Symposium_2015_submission_100.pdf">(Link)</a>
-                            </li>
-                        </lu>
-                        <lu style="list-style-type:disc">
-                            <li class="pubs">Javadi M, Valaee A. A High Speed Vision System for Humanoid Soccer Player Robots, August 2017.
-                                <a href="">(Link)</a>
-                            </li>
-                        </lu>
-                        <lu style="list-style-type:disc">
-                            <li class="pubs">
-                                Javadi M, Mir A. Introduction to Convolutional Neural Networks, Presentation in Foundations of Data Mining, June 2017.
-                                <a href="./reports/cnn.pdf">(Link)</a>
-                            </li>
-                        </lu>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+    <section id="contact">
+        <div class="container">
+            <h2>Contact</h2>
+            <p>Email: <a href="mailto:hzangane@cougarnet.uh.edu">hzangane@cougarnet.uh.edu</a></p>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/hadikia/" target="_blank">linkedin.com/in/hadikia</a></p>
         </div>
+    </section>
 
-
-        <div id="contact" class="section">
-            <div class="column col3">
-                <h3>Hadi Zanganeh Kia</h3>
-                <p>Tehran, Iran</p>
-                <p>E-mail: <br/>
-                    mohammadjv94@gmail.com<br/>
-                    mohammad.javadi@aut.ac.ir</p>
-                <p>Mobile: +98 936 481 9275 </p>
-                <li class="list-group-item"><a href="https://github.com/mammadjv"><i </i> Github</a></li>
-                <li class="list-group-item"><a href="https://www.linkedin.com/in/mohammadjavadi"><i </i> LinkedIn</a></li>
-                <li class="list-group-item"><a href="http://autman.aut.ac.ir"><i </i> AUTMan Humanoid Robotic Team</a></li>
-            </div>
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Hadi Zanganeh Kia. All rights reserved.</p>
         </div>
-    </div>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $(".section").not(":first").hide();
-            $("ul#menu li:first").addClass("active").show();
-
-            $("ul#menu li").click(function () {
-                $("ul#menu li.active").removeClass("active");
-                $(this).addClass("active");
-                $(".section").slideUp();
-                $($('a', this).attr("href")).slideDown('slow');
-                return false;
-            });
-
-        });
-    </script>
-</div>
+    </footer>
 </body>
 </html>
