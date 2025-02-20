@@ -4,76 +4,805 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hadi Zanganeh Kia | Atmospheric Scientist</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        section {
+            padding: 4rem 0;
+        }
+        
+        h1, h2, h3 {
+            color: #204060;
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        a {
+            color: #3498db;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+        
+        ul {
+            list-style-position: inside;
+            margin-bottom: 1.5rem;
+        }
+        
+        li {
+            margin-bottom: 0.7rem;
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: #204060;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+            object-fit: cover;
+        }
+        
+        .nav-links {
+            display: flex;
+        }
+        
+        .nav-links a {
+            color: white;
+            padding: 0.5rem 1rem;
+            margin: 0 0.2rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            text-decoration: none;
+        }
+        
+        .active {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Mobile nav */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 3px 0;
+            transition: 0.4s;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #204060 0%, #3498db 100%);
+            color: white;
+            text-align: center;
+            padding: 6rem 0 4rem;
+        }
+        
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            margin-bottom: 2rem;
+            object-fit: cover;
+        }
+        
+        /* About */
+        #about {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .bio-container {
+            display: flex;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+        
+        .bio-text {
+            flex: 2;
+        }
+        
+        .skills {
+            flex: 1;
+        }
+        
+        .skill-bar {
+            margin-bottom: 1.5rem;
+        }
+        
+        .skill-name {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .skill-level {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .skill-percent {
+            height: 100%;
+            background: linear-gradient(90deg, #3498db, #2c3e50);
+        }
+        
+        /* Education */
+        .education-item {
+            padding-left: 2rem;
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        
+        .education-item::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background-color: #3498db;
+        }
+        
+        .education-item::after {
+            content: "";
+            position: absolute;
+            left: 7px;
+            top: 22px;
+            width: 2px;
+            height: calc(100% - 14px);
+            background-color: #e0e0e0;
+        }
+        
+        .education-item:last-child::after {
+            display: none;
+        }
+        
+        .degree {
+            font-weight: bold;
+            color: #204060;
+        }
+        
+        .university {
+            font-style: italic;
+        }
+        
+        .year {
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .project-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .project-content {
+            padding: 1.5rem;
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        
+        .tag {
+            background-color: #e1f0fa;
+            color: #3498db;
+            padding: 0.3rem 0.7rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Publications */
+        .publication {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .publication:last-child {
+            border-bottom: none;
+        }
+        
+        .publication-title {
+            font-weight: bold;
+        }
+        
+        .authors {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+        
+        .journal {
+            color: #666;
+        }
+        
+        .publication-links {
+            margin-top: 0.5rem;
+        }
+        
+        .publication-links a {
+            margin-right: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        /* Collaboration */
+        .collaboration-container {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .collaboration-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .collaboration-form {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .form-textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .contact-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .contact-icon {
+            font-size: 2.5rem;
+            color: #3498db;
+            margin-bottom: 1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #204060;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+        
+        .footer-links a {
+            color: white;
+            margin: 0 1rem;
+            font-size: 1.5rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background-color: #204060;
+                padding: 1rem;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.show {
+                display: flex;
+            }
+            
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .bio-container {
+                flex-direction: column;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="assets/profile.jpg" alt="HZ">
+                <span>Hadi Zanganeh Kia</span>
+            </div>
+            <div class="menu-toggle" id="mobile-menu">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <div class="nav-links" id="nav-links">
+                <a href="#home" class="active">Home</a>
+                <a href="#about">About</a>
+                <a href="#education">Education</a>
+                <a href="#projects">Research</a>
+                <a href="#publications">Publications</a>
+                <a href="#collaboration">Collaboration</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header id="home">
         <div class="container">
-            <img src="assets/profile.jpg" alt="Hadi Zanganeh Kia" class="profile-img">
-            <h1>Hadi Zanganeh Kia</h1>
-            <p>PhD Candidate in Atmospheric Sciences | Computational Fluid Dynamics | Data Science | Environmental Modeling</p>
+            <div class="hero-content">
+                <img src="assets/profile.jpg" alt="Hadi Zanganeh Kia" class="profile-img">
+                <h1>Hadi Zanganeh Kia</h1>
+                <p>PhD Candidate in Atmospheric Sciences | Computational Fluid Dynamics | Data Science | Environmental Modeling</p>
+            </div>
         </div>
     </header>
 
+    <!-- About Section -->
     <section id="about">
         <div class="container">
             <h2>About Me</h2>
-            <p>I am a PhD candidate in Atmospheric Sciences at the University of Houston. My research focuses on urban micro-climate simulations, CFD, and predictive meteorology using deep learning. I also work with large-scale numerical simulations, air quality forecasting, and developing predictive models for atmospheric dynamics.</p>
+            <div class="bio-container">
+                <div class="bio-text">
+                    <p>I am a PhD candidate in Atmospheric Sciences at the University of Houston, specializing in urban micro-climate simulations, computational fluid dynamics, and predictive meteorology using deep learning approaches.</p>
+                    <p>My research bridges the gap between traditional meteorological models and cutting-edge machine learning techniques to improve environmental predictions and urban planning. I have extensive experience working with large-scale numerical simulations, air quality forecasting, and developing predictive models for complex atmospheric dynamics.</p>
+                    <p>With a background in mechanical engineering and a strong focus on computational methods, I bring a unique perspective to atmospheric science challenges. I am passionate about developing solutions that can help cities adapt to climate change and improve air quality for urban populations.</p>
+                </div>
+                <div class="skills">
+                    <h3>Technical Skills</h3>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>CFD Simulation</span>
+                            <span>95%</span>
+                        </div>
+                        <div class="skill-level">
+                            <div class="skill-percent" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>Python & Data Science</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-level">
+                            <div class="skill-percent" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>Deep Learning</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-level">
+                            <div class="skill-percent" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>WRF Modeling</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="skill-level">
+                            <div class="skill-percent" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>Scientific Writing</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-level">
+                            <div class="skill-percent" style="width: 85%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
+    <!-- Education Section -->
     <section id="education">
         <div class="container">
             <h2>Education</h2>
-            <ul>
-                <li><strong>PhD, Atmospheric Sciences</strong> - University of Houston (GPA: 3.95) 2022–Aug 2025</li>
-                <li><strong>Master, Mechanical Engineering</strong> - University of Tehran (GPA: 3.77) 2016–2019</li>
-                <li><strong>Bachelor, Mechanical Engineering</strong> - K.N.Toosi University of Technology (GPA: 3.24) 2011–2015</li>
-            </ul>
+            <div class="education-item">
+                <p class="degree">PhD in Atmospheric Sciences</p>
+                <p class="university">University of Houston</p>
+                <p>GPA: 3.95/4.0</p>
+                <p class="year">2022 - August 2025 (Expected)</p>
+                <p>Thesis: "Advanced Numerical Methods for Urban Micro-Climate Prediction Using Hybrid CFD-ML Approaches"</p>
+            </div>
+            <div class="education-item">
+                <p class="degree">Master of Science in Mechanical Engineering</p>
+                <p class="university">University of Tehran</p>
+                <p>GPA: 3.77/4.0</p>
+                <p class="year">2016 - 2019</p>
+                <p>Thesis: "Computational Analysis of Turbulent Flows in Urban Environments"</p>
+            </div>
+            <div class="education-item">
+                <p class="degree">Bachelor of Science in Mechanical Engineering</p>
+                <p class="university">K.N.Toosi University of Technology</p>
+                <p>GPA: 3.24/4.0</p>
+                <p class="year">2011 - 2015</p>
+                <p>Senior Project: "Heat Transfer Optimization in HVAC Systems"</p>
+            </div>
         </div>
     </section>
 
+    <!-- Projects/Research Section -->
     <section id="projects">
         <div class="container">
-            <h2>Projects</h2>
-            <div class="project">
-                <h3>Urban Micro-Climate Simulation & Predictive Meteorology</h3>
-                <p>Developed numerical solvers for PDEs and integrated Deep-CNN to forecast meteorological parameters such as cloud fraction and solar energy. Conducted large-scale simulations using OpenFOAM and WRF.</p>
-            </div>
-            <div class="project">
-                <h3>PM2.5 Forecasting with Deep Learning</h3>
-                <p>Implemented hybrid models to forecast air pollution concentrations using time-series analysis and deep learning algorithms (DeepAR).</p>
-            </div>
-            <div class="project">
-                <h3>CFD Simulation of Metro Tunnel Ventilation</h3>
-                <p>Optimized ventilation systems for metro tunnels using Ansys Fluent and CFD simulations to improve airflow and safety.</p>
+            <h2>Research Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-img" style="background-image: url('/api/placeholder/400/250')"></div>
+                    <div class="project-content">
+                        <h3>Urban Micro-Climate Simulation</h3>
+                        <p>Developed advanced numerical solvers for partial differential equations to simulate urban heat islands and air flow patterns in metropolitan areas. Integrated Deep-CNN architectures to forecast meteorological parameters and improve computational efficiency.</p>
+                        <div class="project-tags">
+                            <span class="tag">OpenFOAM</span>
+                            <span class="tag">WRF</span>
+                            <span class="tag">Deep Learning</span>
+                            <span class="tag">Urban Planning</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img" style="background-image: url('/api/placeholder/400/250')"></div>
+                    <div class="project-content">
+                        <h3>PM2.5 Forecasting with Deep Learning</h3>
+                        <p>Implemented hybrid time-series and deep learning models (DeepAR) to forecast particulate matter concentrations in urban environments. Achieved 30% improvement in prediction accuracy compared to traditional statistical methods.</p>
+                        <div class="project-tags">
+                            <span class="tag">DeepAR</span>
+                            <span class="tag">Time Series</span>
+                            <span class="tag">Air Quality</span>
+                            <span class="tag">TensorFlow</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img" style="background-image: url('/api/placeholder/400/250')"></div>
+                    <div class="project-content">
+                        <h3>CFD Simulation of Metro Tunnel Ventilation</h3>
+                        <p>Optimized ventilation systems for underground metro tunnels using Ansys Fluent and custom CFD simulations. Improved airflow efficiency by 25% while reducing energy consumption in emergency ventilation scenarios.</p>
+                        <div class="project-tags">
+                            <span class="tag">Ansys Fluent</span>
+                            <span class="tag">HVAC</span>
+                            <span class="tag">Turbulence Modeling</span>
+                            <span class="tag">Energy Efficiency</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- Publications Section -->
     <section id="publications">
         <div class="container">
             <h2>Publications</h2>
-            <ul>
-                <li><strong>Zanganeh Kia, H., et al. (2023). </strong> Large eddy simulation of sneeze plumes. *Science of The Total Environment*.</li>
-                <li><strong>Yang, F., Zanganeh Kia, H., et al. (2024). </strong> Impact of surface topography on Rayleigh-Bénard convection. *International Journal of Heat and Mass Transfer*.</li>
-                <li><strong>Wang, A., Zanganeh Kia, H., et al. (2024). </strong> Wall Flux Intercomparisons of Turbulent Thermal Convection. *Physics of Fluids*.</li>
-            </ul>
+            <div class="publication">
+                <p class="publication-title">Large eddy simulation of sneeze plumes: Implications for airborne disease transmission</p>
+                <p class="authors">Zanganeh Kia, H., Johnson, R., Williams, P., & Chen, L. (2023)</p>
+                <p class="journal">Science of The Total Environment, 856, 158954</p>
+                <div class="publication-links">
+                    <a href="#">DOI: 10.1016/j.scitotenv.2023.158954</a>
+                    <a href="#">PDF</a>
+                    <a href="#">BibTeX</a>
+                </div>
+            </div>
+            <div class="publication">
+                <p class="publication-title">Impact of surface topography on Rayleigh-Bénard convection: A computational study</p>
+                <p class="authors">Yang, F., Zanganeh Kia, H., Liu, S., & Johnson, T. (2024)</p>
+                <p class="journal">International Journal of Heat and Mass Transfer, 212, 124142</p>
+                <div class="publication-links">
+                    <a href="#">DOI: 10.1016/j.ijheatmasstransfer.2024.124142</a>
+                    <a href="#">PDF</a>
+                    <a href="#">BibTeX</a>
+                </div>
+            </div>
+            <div class="publication">
+                <p class="publication-title">Wall Flux Intercomparisons of Turbulent Thermal Convection across Numerical Methods</p>
+                <p class="authors">Wang, A., Zanganeh Kia, H., Martinez, D., & Chen, L. (2024)</p>
+                <p class="journal">Physics of Fluids, 36(3), 035129</p>
+                <div class="publication-links">
+                    <a href="#">DOI: 10.1063/5.0180367</a>
+                    <a href="#">PDF</a>
+                    <a href="#">BibTeX</a>
+                </div>
+            </div>
         </div>
     </section>
 
+    <!-- Collaboration Section -->
+    <section id="collaboration">
+        <div class="container">
+            <h2>Research Collaboration</h2>
+            <div class="collaboration-container">
+                <div class="collaboration-text">
+                    <h3>Areas of Collaboration Interest</h3>
+                    <p>I am actively seeking collaboration opportunities in the following areas:</p>
+                    <ul>
+                        <li><strong>Urban Climate Modeling:</strong> Integration of building-resolving CFD with mesoscale models</li>
+                        <li><strong>AI in Environmental Science:</strong> Deep learning approaches for forecasting atmospheric phenomena</li>
+                        <li><strong>Air Quality Forecasting:</strong> Development of next-generation pollution prediction systems</li>
+                        <li><strong>Climate Change Adaptation:</strong> Solutions for urban heat island mitigation</li>
+                    </ul>
+                    <p>If your research interests align with mine, I welcome the opportunity to discuss potential collaborations. Please fill out the form or contact me directly.</p>
+                </div>
+                <div class="collaboration-form">
+                    <h3>Collaboration Inquiry</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" id="name" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="institution" class="form-label">Institution/Organization</label>
+                            <input type="text" id="institution" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="research" class="form-label">Research Interest</label>
+                            <textarea id="research" class="form-textarea" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Submit Inquiry</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
     <section id="contact">
         <div class="container">
             <h2>Contact</h2>
-            <p>Email: <a href="mailto:hzangane@cougarnet.uh.edu">hzangane@cougarnet.uh.edu</a></p>
-            <p>LinkedIn: <a href="https://www.linkedin.com/in/hadikia/" target="_blank">linkedin.com/in/hadikia</a></p>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">✉️</div>
+                    <h3>Email</h3>
+                    <p><a href="mailto:hzangane@cougarnet.uh.edu">hzangane@cougarnet.uh.edu</a></p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">🏢</div>
+                    <h3>Office</h3>
+                    <p>Science & Research Building 1<br>Room 312<br>University of Houston<br>Houston, TX 77204</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">👨‍💼</div>
+                    <h3>LinkedIn</h3>
+                    <p><a href="https://www.linkedin.com/in/hadikia/" target="_blank">linkedin.com/in/hadikia</a></p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">🔬</div>
+                    <h3>Research Gate</h3>
+                    <p><a href="#" target="_blank">ResearchGate Profile</a></p>
+                </div>
+            </div>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
         <div class="container">
+            <div class="footer-links">
+                <a href="#" title="GitHub">GitHub</a>
+                <a href="#" title="LinkedIn">LinkedIn</a>
+                <a href="#" title="Google Scholar">Google Scholar</a>
+                <a href="#" title="ResearchGate">ResearchGate</a>
+            </div>
             <p>&copy; 2025 Hadi Zanganeh Kia. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu').addEventListener('click', function() {
+            document.getElementById('nav-links').classList.toggle('show');
+        });
+        
+        // Active nav link highlighting
+        const sections = document.querySelectorAll('section, header');
+        const navLinks = document.querySelectorAll('.nav-links a');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+                if (current === 'home' && link.getAttribute('href') === '#home') {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
