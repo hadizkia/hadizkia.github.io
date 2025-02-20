@@ -15,12 +15,23 @@
         }
         
       
-        body {
-    background-image: url('assets/U_40_16.png');  /* path to your image */
-    background-size: cover;  /* optional, to make sure it covers the whole screen */
-    background-position: center;  /* optional, to center the image */
-    background-attachment: fixed;  /* optional, to make the background image fixed */
-    opacity: 0.6;
+body {
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('assets/U_40_16.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    opacity: 0.6; /* 40% transparency */
+    z-index: -1; /* Keep it behind the content */
 }
 
         
