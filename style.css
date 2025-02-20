@@ -96,10 +96,7 @@ footer {
     margin-bottom: 24px; /* add spacing between publications */
 }
 
-.publication-title {
-    font-size: 50px; /* Adjust as needed, use px or rem */
-     font-weight: normal;   
-}
+
 
 .authors,
 .journal,
@@ -110,4 +107,14 @@ footer {
 .publication-links a {
     font-size: 18px; /* Adjust as needed, use px or rem */
     margin-right: 17px; /* add spacing between links */
+}
+.publication-title {
+    font-size: 50px !important;
+    font-weight: normal !important;
+}
+
+.authors,
+.journal,
+.conference {
+    font-size: 18px !important;
 }
