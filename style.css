@@ -87,3 +87,17 @@ footer {
     bottom: 0;
     width: 100%;
 }
+.publication-list {
+    list-style-position: inside; /* Ensures bullets align properly */
+    padding-left: 20px; /* Adjusts spacing */
+}
+
+.publication-list li {
+    margin-bottom: 15px; /* Adds spacing between list items */
+}
+
+ul {
+    list-style-type: disc; /* Ensures proper bullet points */
+    list-style-position: outside; /* Places bullets correctly */
+    padding-left: 20px;
+}
