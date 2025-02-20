@@ -118,4 +118,7 @@ ul {
     display: block; /* Ensures each item is properly spaced */
     margin-left: 0; /* Avoids unintended left shifts */
 }
+.publication-list li {
+    display: list-item; /* Ensures proper list item behavior */
+}
 
