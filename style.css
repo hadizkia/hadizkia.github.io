@@ -93,21 +93,21 @@ footer {
 
 .publication {
     /* added publication class */
-    margin-bottom: 20px; /* add spacing between publications */
+    margin-bottom: 24px; /* add spacing between publications */
 }
 
 .publication-title {
-    font-size: 24px; /* Adjust as needed, use px or rem */
+    font-size: 28px; /* Adjust as needed, use px or rem */
     font-weight: bold;
 }
 
 .authors,
 .journal,
 .conference {
-    font-size: 16px; /* Adjust as needed, use px or rem */
+    font-size: 18px; /* Adjust as needed, use px or rem */
 }
 
 .publication-links a {
-    font-size: 14px; /* Adjust as needed, use px or rem */
-    margin-right: 10px; /* add spacing between links */
+    font-size: 18px; /* Adjust as needed, use px or rem */
+    margin-right: 17px; /* add spacing between links */
 }
