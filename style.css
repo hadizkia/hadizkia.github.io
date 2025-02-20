@@ -92,3 +92,15 @@ footer {
     padding-left: 20px; /* Adjusts spacing */
 }
 
+.publication-title {
+    font-size: 1.5em; /* Adjust as needed */
+    font-weight: bold;
+}
+
+.authors, .journal, .conference {
+    font-size: 1.2em; /* Adjust as needed */
+}
+
+.publication-links a {
+    font-size: 1.1em; /* Adjust as needed */
+}
