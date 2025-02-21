@@ -163,6 +163,8 @@
     align-items: center;
     max-width: 800px;
     margin: 0 auto;
+    padding-top: 10vh;  /* Reduce this value to move everything up */
+
     }
     
     .profile-img {
@@ -526,7 +528,7 @@
     z-index: 1;
     text-align: center;
     color: white;
-    padding: 15vh 0;
+    padding: 8vh 0;
 }
 
 .profile-img {
