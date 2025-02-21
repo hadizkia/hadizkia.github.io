@@ -493,8 +493,8 @@
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* This will ensure the video covers the entire section */
-    z-index: -1; /* Place video behind content */
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity here */
+    pointer-events: none; /* Ensures video remains clickable if needed */
   }
 
   .content {
