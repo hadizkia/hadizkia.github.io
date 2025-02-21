@@ -483,7 +483,7 @@
 
   #video-background-section {
     position: relative;
-    height: 100vh; /* You can adjust the height based on your design */
+    height: 50vh; /* You can adjust the height based on your design */
     overflow: hidden;
   }
 
