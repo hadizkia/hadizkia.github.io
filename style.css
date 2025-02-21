@@ -530,7 +530,7 @@
     }
     
     .video-container {
-        background: url('assets/cloud.jpg') no-repeat center center/cover;
+        background: url('assets/cloud.mp4') no-repeat center center/cover;
         position: fixed;
         top: 0;
         left: 0;
