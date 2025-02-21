@@ -316,13 +316,13 @@
     color: #666;
     font-style: italic;
     margin-bottom: 0.5rem;
-    font-size: 1.0rem; /* Add this line to change the font size */
+    font-size: 1.1rem; /* Add this line to change the font size */
 
     }
     
     .journal {
     color: #666;
-    font-size: 0.7rem;
+    font-size: 1.0rem;
     }
     
     .publication-links {
