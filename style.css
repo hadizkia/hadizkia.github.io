@@ -521,3 +521,15 @@
     text-align: center;
     padding: 20px;
   }
+
+
+  /* Disable video on mobile */
+@media (max-width: 768px) {
+    .video-container {
+        display: none;
+    }
+    
+    header {
+        background: url('assets/cloud.jpg') no-repeat center center/cover;
+    }
+}
