@@ -330,6 +330,11 @@
     margin-right: 1rem;
     font-size: 0.9rem;
     }
+
+    .publication-title {
+    font-size: 3.5em; /* Adjust as needed */
+    font-weight: bold;
+    }
     
     /* Collaboration */
     .collaboration-container {
