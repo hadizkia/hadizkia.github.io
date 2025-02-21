@@ -481,21 +481,36 @@
 
 
 
-  #video-background-section {
-    position: relative;
-    height: 50vh; /* You can adjust the height based on your design */
-    overflow: hidden;
-  }
-
-  .video-background video {
-    position: absolute;
+.video-container {
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -1;
+}
+
+#background-video {
+    width: 100%;
     height: 100%;
-    object-fit: cover; /* This will ensure the video covers the entire section */
-    z-index: -1; /* Place video behind content */
-  }
+    object-fit: cover;
+}
+
+/* Hero Content Styling */
+.hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: white;
+    padding: 15vh 0;
+}
+
+.profile-img {
+    width: 150px;
+    border-radius: 50%;
+    border: 3px solid white;
+}
 
   .content {
     position: relative;
