@@ -173,8 +173,7 @@
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     margin-bottom: 2rem;
     object-fit: cover;
-    transform: translateY(-20px);  /* Move upward */
-
+  
     }
     
     /* About */
