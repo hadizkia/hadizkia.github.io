@@ -520,6 +520,8 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    opacity: 0.5; /* Change this value to control transparency */
+
 }
 
 /* Hero Content Styling */
