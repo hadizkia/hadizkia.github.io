@@ -547,7 +547,13 @@
     padding: 20px;
   }
 
+  .conference {
+    color: #000000; /* Purple - you can change this */
+    font-style: italic;
+    font-weight: 500;
+  }
 
+  
   /* Disable video on mobile */
   @media (max-width: 768px) {
     #background-video {
