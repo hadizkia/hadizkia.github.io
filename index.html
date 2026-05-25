@@ -99,6 +99,40 @@
   </div>
 </section>
 
+<!-- WIND MAP PANEL -->
+<div id="wind-panel">
+  <div class="wind-panel-header">
+    <div class="wind-panel-title">
+      <span>🌬</span>
+      <span>US Wind Forecast</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <span class="wind-live-dot"></span>
+      <span class="wind-badge" id="wind-model-label">ECMWF</span>
+      <button id="wind-close" aria-label="Close wind panel">×</button>
+    </div>
+  </div>
+  <div class="wind-panel-tabs">
+    <button class="wind-tab active" data-product="ecmwf">ECMWF · Forecast</button>
+    <button class="wind-tab" data-product="gfs">GFS · Forecast</button>
+    <button class="wind-tab" data-product="icon">ICON · EU Model</button>
+  </div>
+  <div id="wind-iframe-wrap">
+    <div class="wind-loading" id="wind-loading">Loading wind data…</div>
+  </div>
+  <div class="wind-panel-footer">
+    <span>Animated surface winds · 10-day forecast</span>
+    <span style="color:var(--accent);font-size:0.6rem;">Windy.com</span>
+  </div>
+</div>
+
+<!-- WIND MAP TOGGLE BUTTON -->
+<button id="wind-toggle" aria-label="Toggle US wind map">
+  <span class="wind-toggle-icon">🌬</span>
+  <span>US Wind Map</span>
+  <span id="wind-arrow">▲</span>
+</button>
+
 <!-- FLOATING LIVE WEATHER WIDGET -->
 <div id="weather-widget">
   <div class="wx-top">

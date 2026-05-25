@@ -170,6 +170,88 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 });
 
 /* ================================================================
+   WIND MAP PANEL  (Windy.com embed — free, no API key)
+   ================================================================ */
+(function () {
+  const panel      = document.getElementById('wind-panel');
+  const toggle     = document.getElementById('wind-toggle');
+  const closeBtn   = document.getElementById('wind-close');
+  const wrap       = document.getElementById('wind-iframe-wrap');
+  const loading    = document.getElementById('wind-loading');
+  const modelLabel = document.getElementById('wind-model-label');
+  const tabs       = document.querySelectorAll('.wind-tab');
+  if (!panel || !toggle) return;
+
+  // Windy embed base — surface wind animation centered on USA
+  const BASE = 'https://embed.windy.com/embed2.html' +
+    '?lat=39.5&lon=-98.35&detailLat=39.5&detailLon=-98.35' +
+    '&zoom=3&level=surface&overlay=wind' +
+    '&menu=&message=true&marker=&calendar=now' +
+    '&pressure=&type=map&location=coordinates' +
+    '&detail=&metricWind=default&metricTemp=default&radarRange=-1';
+
+  const MODEL_LABELS = { ecmwf: 'ECMWF', gfs: 'GFS', icon: 'ICON' };
+  let currentProduct = 'ecmwf';
+  let iframeLoaded   = false;
+
+  function buildURL(product) {
+    return BASE + '&product=' + product;
+  }
+
+  function loadIframe(product) {
+    // Remove existing iframe if any
+    const old = wrap.querySelector('iframe');
+    if (old) old.remove();
+    if (loading) loading.style.display = 'flex';
+
+    const iframe = document.createElement('iframe');
+    iframe.src = buildURL(product);
+    iframe.title = 'Animated US wind forecast — ' + MODEL_LABELS[product];
+    iframe.allow = 'fullscreen';
+    iframe.setAttribute('loading', 'lazy');
+    iframe.addEventListener('load', () => {
+      if (loading) loading.style.display = 'none';
+      requestAnimationFrame(() => iframe.classList.add('ready'));
+    });
+    wrap.appendChild(iframe);
+    if (modelLabel) modelLabel.textContent = MODEL_LABELS[product] || product.toUpperCase();
+    iframeLoaded = true;
+  }
+
+  function openPanel() {
+    panel.classList.add('open');
+    toggle.classList.add('open');
+    if (!iframeLoaded) loadIframe(currentProduct);
+  }
+
+  function closePanel() {
+    panel.classList.remove('open');
+    toggle.classList.remove('open');
+  }
+
+  toggle.addEventListener('click', () => {
+    panel.classList.contains('open') ? closePanel() : openPanel();
+  });
+  closeBtn.addEventListener('click', closePanel);
+
+  // Tab switching
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      currentProduct = tab.dataset.product;
+      iframeLoaded = false;
+      loadIframe(currentProduct);
+    });
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && panel.classList.contains('open')) closePanel();
+  });
+})();
+
+/* ================================================================
    LIVE WEATHER WIDGET  (Open-Meteo — no API key needed)
    ================================================================ */
 (function () {

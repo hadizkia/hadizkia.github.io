@@ -223,6 +223,193 @@ p   { color: var(--muted); }
 
 .hero-name { color: var(--text); margin-bottom: 10px; }
 
+/* ================================================================
+   WIND MAP PANEL
+   ================================================================ */
+#wind-toggle {
+  position: fixed;
+  bottom: 28px;
+  right: 264px;
+  z-index: 901;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(6, 16, 31, 0.90);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 9px 18px;
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-family: var(--mono);
+  cursor: pointer;
+  transition: all 0.25s;
+  white-space: nowrap;
+}
+#wind-toggle:hover,
+#wind-toggle.open {
+  border-color: var(--accent-b);
+  color: var(--accent);
+  background: rgba(0, 212, 170, 0.08);
+  box-shadow: 0 0 20px rgba(0,212,170,0.12);
+}
+#wind-arrow { font-size: 0.6rem; transition: transform 0.3s; }
+#wind-toggle.open #wind-arrow { transform: rotate(180deg); }
+.wind-toggle-icon { font-size: 0.9rem; }
+
+#wind-panel {
+  position: fixed;
+  bottom: 76px;
+  right: 28px;
+  width: 400px;
+  z-index: 900;
+  border-radius: var(--rad-lg);
+  overflow: hidden;
+  background: rgba(4, 12, 26, 0.95);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--border);
+  box-shadow: 0 12px 60px rgba(0,0,0,0.7), 0 0 0 1px rgba(0,212,170,0.05);
+  display: none;
+  flex-direction: column;
+  transform-origin: bottom right;
+}
+#wind-panel.open {
+  display: flex;
+  animation: wind-open 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes wind-open {
+  from { opacity: 0; transform: scale(0.94) translateY(12px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.wind-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(0,212,170,0.04);
+}
+.wind-panel-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.wind-live-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: pulse-dot 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+.wind-badge {
+  font-size: 0.62rem;
+  font-family: var(--mono);
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: rgba(74,158,255,0.14);
+  border: 1px solid rgba(74,158,255,0.28);
+  color: var(--blue);
+  letter-spacing: 0.07em;
+  transition: all 0.2s;
+}
+#wind-close {
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 1.3rem;
+  line-height: 1;
+  padding: 0 4px;
+  transition: color 0.2s;
+  margin-left: 4px;
+}
+#wind-close:hover { color: var(--text); }
+
+.wind-panel-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+}
+.wind-tab {
+  flex: 1;
+  padding: 8px 0;
+  font-size: 0.7rem;
+  font-family: var(--mono);
+  text-align: center;
+  cursor: pointer;
+  color: var(--muted);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+  letter-spacing: 0.03em;
+}
+.wind-tab:hover  { color: var(--text); background: rgba(255,255,255,0.03); }
+.wind-tab.active { color: var(--accent); border-bottom-color: var(--accent); background: var(--accent-a); }
+
+#wind-iframe-wrap {
+  width: 100%;
+  height: 270px;
+  position: relative;
+  background: #050d1a;
+}
+#wind-iframe-wrap iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+#wind-iframe-wrap iframe.ready { opacity: 1; }
+
+.wind-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  font-family: var(--mono);
+  color: var(--muted);
+  gap: 8px;
+  flex-direction: column;
+}
+.wind-loading::before {
+  content: '🌬';
+  font-size: 1.8rem;
+  animation: spin-drift 3s linear infinite;
+}
+@keyframes spin-drift {
+  0%   { transform: rotate(0deg) translateX(0); }
+  25%  { transform: rotate(10deg) translateX(4px); }
+  75%  { transform: rotate(-10deg) translateX(-4px); }
+  100% { transform: rotate(0deg) translateX(0); }
+}
+
+.wind-panel-footer {
+  padding: 7px 14px;
+  font-size: 0.63rem;
+  font-family: var(--mono);
+  color: var(--faint);
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0,0,0,0.2);
+}
+
+@media (max-width: 680px) {
+  #wind-panel   { width: calc(100vw - 16px); right: 8px; bottom: 70px; }
+  #wind-toggle  { right: 8px; bottom: 8px; }
+  #weather-widget { right: 8px; bottom: 8px; display: none !important; }
+}
+
 .hero-typewriter {
   font-family: var(--mono);
   font-size: clamp(0.9rem, 2vw, 1.1rem);
