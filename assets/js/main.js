@@ -200,27 +200,42 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   navigator.geolocation.getCurrentPosition(async ({ coords }) => {
     const { latitude: lat, longitude: lon } = coords;
     try {
-      const [wxRes, geoRes] = await Promise.all([
-        fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat.toFixed(4)}&longitude=${lon.toFixed(4)}&current=temperature_2m,apparent_temperature,relative_humidity_2m,wind_speed_10m,weather_code&temperature_unit=fahrenheit&wind_speed_unit=mph&timezone=auto`),
-        fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat.toFixed(4)}&lon=${lon.toFixed(4)}&format=json&zoom=10`)
-      ]);
-      const wx  = await wxRes.json();
-      const geo = await geoRes.json();
-
+      // Weather API first — this is the critical call
+      const wxRes = await fetch(
+        `https://api.open-meteo.com/v1/forecast?latitude=${lat.toFixed(4)}&longitude=${lon.toFixed(4)}&current=temperature_2m,apparent_temperature,relative_humidity_2m,wind_speed_10m,weather_code&temperature_unit=fahrenheit&wind_speed_unit=mph&timezone=auto`
+      );
+      if (!wxRes.ok) return;
+      const wx   = await wxRes.json();
       const c    = wx.current;
       const code = c.weather_code;
-      const city = geo.address.city || geo.address.town || geo.address.village || geo.address.county || 'Your Location';
-      const state = geo.address.state_code || geo.address.country_code?.toUpperCase() || '';
 
-      document.getElementById('wx-icon-big').textContent  = WX_ICONS[code] ?? '🌡';
-      document.getElementById('wx-temp-big').textContent  = `${Math.round(c.temperature_2m)}°F`;
-      document.getElementById('wx-desc-text').textContent = WX_DESC[code] ?? 'Current conditions';
+      // Geocoding is optional — fall back to coordinates if it fails
+      let locationName = `${lat.toFixed(1)}°, ${lon.toFixed(1)}°`;
+      try {
+        const geoRes = await fetch(
+          `https://nominatim.openstreetmap.org/reverse?lat=${lat.toFixed(4)}&lon=${lon.toFixed(4)}&format=json&zoom=10`,
+          { headers: { 'Accept-Language': 'en' } }
+        );
+        if (geoRes.ok) {
+          const geo   = await geoRes.json();
+          const city  = geo.address?.city || geo.address?.town || geo.address?.village || geo.address?.county || '';
+          const state = geo.address?.state_code || geo.address?.country_code?.toUpperCase() || '';
+          if (city) locationName = state ? `${city}, ${state}` : city;
+        }
+      } catch (_) { /* use coordinate fallback */ }
+
+      // Populate all fields
+      document.getElementById('wx-icon-big').textContent   = WX_ICONS[code] ?? '🌡';
+      document.getElementById('wx-temp-big').textContent   = `${Math.round(c.temperature_2m)}°F`;
+      document.getElementById('wx-desc-text').textContent  = WX_DESC[code] ?? 'Current conditions';
       document.getElementById('wx-feels-text').textContent = `Feels like ${Math.round(c.apparent_temperature)}°F`;
-      document.getElementById('wx-location').textContent  = state ? `${city}, ${state}` : city;
-      document.getElementById('wx-wind-val').textContent  = `${Math.round(c.wind_speed_10m)} mph`;
-      document.getElementById('wx-hum-val').textContent   = `${c.relative_humidity_2m}%`;
+      document.getElementById('wx-location').textContent   = locationName;
+      document.getElementById('wx-wind-val').textContent   = `${Math.round(c.wind_speed_10m)} mph`;
+      document.getElementById('wx-hum-val').textContent    = `${c.relative_humidity_2m}%`;
 
-      widget.classList.add('loaded');
-    } catch (_) { /* silently fail */ }
+      // Only now make the widget visible
+      widget.style.display = '';
+      requestAnimationFrame(() => widget.classList.add('loaded'));
+    } catch (_) { /* API failed — keep widget hidden */ }
   }, () => { /* geolocation denied — widget stays hidden */ }, { timeout: 8000 });
 })();
