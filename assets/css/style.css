@@ -462,6 +462,11 @@ p   { color: var(--muted); }
   backdrop-filter: blur(10px);
 }
 .btn-outline:hover { border-color: var(--accent-b); color: var(--accent); background: var(--accent-a); }
+.btn-cv {
+  border-color: rgba(167,139,250,0.35);
+  color: var(--purple);
+}
+.btn-cv:hover { border-color: var(--purple); background: rgba(167,139,250,0.1); color: var(--purple); }
 .btn-icon { font-size: 1rem; }
 
 .hero-stats { display: flex; gap: 44px; flex-wrap: wrap; }
