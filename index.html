@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hadi Zanganeh Kia — Atmospheric Scientist</title>
-  <meta name="description" content="Atmospheric Scientist specializing in climate model analysis, precipitation attribution, seasonal forecast validation, and CFD. PhD, University of Houston." />
+  <meta name="description" content="Postdoctoral Fellow at University of Houston. Atmospheric scientist specializing in climate model analysis, precipitation attribution, ensemble forecast validation, CFD, and deep learning for atmosphere." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
@@ -17,10 +17,11 @@
      ============================================================ -->
 <nav id="navbar">
   <div class="container nav-inner">
-    <a href="#hero" class="nav-logo">hzk ~</a>
+    <a href="#hero" class="nav-logo">hzk</a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
-      <li><a href="#projects">Research</a></li>
+      <li><a href="#signal">Research Impact</a></li>
+      <li><a href="#projects">Projects</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#publications">Publications</a></li>
       <li><a href="#contact" class="nav-cta">Contact</a></li>
@@ -32,26 +33,50 @@
      HERO
      ============================================================ -->
 <section id="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
+  <canvas id="hero-canvas" style="position:absolute;inset:0;width:100%;height:100%;"></canvas>
+  <div class="hero-orb orb-1"></div>
+  <div class="hero-orb orb-2"></div>
+  <div class="hero-orb orb-3"></div>
+
   <div class="container">
     <div class="hero-content">
       <div class="hero-eyebrow">
         <span class="hero-badge">PhD · Atmospheric Science</span>
-        <span class="hero-affil">NCAR / UCAR &nbsp;|&nbsp; University of Houston</span>
+        <span class="hero-badge hero-badge-blue">Postdoctoral Fellow</span>
+        <span class="hero-affil">
+          <span class="live-dot"></span>
+          University of Houston
+        </span>
       </div>
-      <h1 class="hero-name">Hadi<br>Zanganeh Kia</h1>
-      <p class="hero-title">Atmospheric Scientist &nbsp;/&nbsp; Climate Data &amp; CFD</p>
-      <p class="hero-desc">
-        I convert <span class="hero-highlight">large-scale climate model output</span> and multi-source observational data
-        into validated, decision-ready regional signals — spanning precipitation attribution,
-        ensemble forecast skill, fluid dynamics, and deep-learning applications for atmosphere.
+
+      <h1 class="hero-name">
+        Hadi<br>
+        <span class="gradient-text">Zanganeh Kia</span>
+      </h1>
+
+      <p class="hero-typewriter">
+        <span id="typewriter-text"></span><span class="cursor"></span>
       </p>
+
+      <p class="hero-desc">
+        I convert <span class="hero-hl">large-scale climate model output</span> and
+        multi-source observational data into validated, decision-ready regional signals —
+        spanning precipitation attribution, ensemble forecast skill,
+        computational fluid dynamics, and deep-learning applications for atmosphere.
+      </p>
+
       <div class="hero-actions">
-        <a href="#projects" class="btn btn-primary">View Research</a>
-        <a href="https://scholar.google.com/citations?user=nXgr5iUAAAAJ&hl=en" target="_blank" rel="noopener" class="btn btn-outline">Google Scholar</a>
-        <a href="#contact" class="btn btn-outline">Get in Touch</a>
+        <a href="#projects" class="btn btn-primary">
+          <span class="btn-icon">⬡</span> View Research
+        </a>
+        <a href="https://scholar.google.com/citations?user=nXgr5iUAAAAJ&hl=en" target="_blank" rel="noopener" class="btn btn-outline">
+          <span class="btn-icon">📖</span> Google Scholar
+        </a>
+        <a href="#contact" class="btn btn-outline">
+          <span class="btn-icon">✉</span> Get in Touch
+        </a>
       </div>
+
       <div class="hero-stats">
         <div class="stat-item">
           <div class="stat-num" data-target="78" data-suffix="+">0+</div>
@@ -63,7 +88,7 @@
         </div>
         <div class="stat-item">
           <div class="stat-num" data-target="4" data-suffix="">0</div>
-          <div class="stat-label">Research Areas</div>
+          <div class="stat-label">h-index</div>
         </div>
         <div class="stat-item">
           <div class="stat-num" data-target="35" data-suffix="+">0+</div>
@@ -73,6 +98,31 @@
     </div>
   </div>
 </section>
+
+<!-- FLOATING LIVE WEATHER WIDGET -->
+<div id="weather-widget">
+  <div class="wx-top">
+    <span class="wx-location-name" id="wx-location">Detecting...</span>
+    <span class="wx-live-badge">LIVE</span>
+  </div>
+  <div class="wx-main">
+    <span class="wx-icon-big" id="wx-icon-big">🌡</span>
+    <span class="wx-temp-big" id="wx-temp-big">--°F</span>
+  </div>
+  <div class="wx-desc-row" id="wx-desc-text">Loading weather...</div>
+  <div class="wx-desc-row" style="font-size:0.72rem;color:var(--faint);margin-top:2px;" id="wx-feels-text"></div>
+  <div class="wx-details">
+    <div class="wx-detail-item">
+      <span class="wx-detail-label">Wind</span>
+      <span class="wx-detail-val" id="wx-wind-val">-- mph</span>
+    </div>
+    <div class="wx-detail-item">
+      <span class="wx-detail-label">Humidity</span>
+      <span class="wx-detail-val" id="wx-hum-val">--%</span>
+    </div>
+  </div>
+  <div class="wx-footer">Open-Meteo · Real-time</div>
+</div>
 
 <div class="divider"></div>
 
@@ -84,90 +134,168 @@
     <div class="about-grid">
       <div class="about-text">
         <span class="section-label">About</span>
-        <h2 class="section-title">From Raw Atmosphere<br>to Decision-Ready Signals</h2>
+        <h2 class="section-title">Turning Atmosphere<br>Into <span class="gradient-text">Quantitative Insight</span></h2>
+
         <p>
-          I am an atmospheric scientist with a PhD from the University of Houston,
-          currently conducting research at NCAR/UCAR. My work spans the full stack of
-          atmospheric data science: running and diagnosing large-scale climate models (iCAM6, CESM),
-          evaluating multi-observational precipitation datasets, validating
-          ensemble seasonal forecasts, and applying deep learning to atmospheric prediction problems.
+          I am a Postdoctoral Fellow at the <strong style="color:var(--text);">University of Houston</strong>,
+          where I received my PhD in Atmospheric Science. My research sits at the intersection of
+          large-scale climate model diagnostics, observational data engineering, and applied machine learning —
+          with a focus on producing <strong style="color:var(--text);">validated, reproducible, decision-ready signals</strong>
+          from raw atmospheric data.
         </p>
         <p>
-          On HPC systems like Derecho, I build reproducible Python workflows that
-          process terabytes of NetCDF/GRIB output and synthesize it into
-          bias-corrected, area-weighted regional metrics — the kind of quantitative
-          signal that matters for real decisions.
+          I work with iCAM6, CESM, ERA5, and a full suite of multi-observational precipitation products
+          (MRMS, IMERG, CPC, GPCC, GPCP, CRU) on NCAR's Derecho HPC system.
+          My Python workflows process tens of terabytes of NetCDF/GRIB output into
+          bias-corrected, area-weighted regional metrics.
         </p>
         <p>
-          My PhD research integrated <strong class="hero-highlight">Computational Fluid Dynamics (CFD)</strong>,
-          machine learning, and observational data to study atmospheric dispersion,
-          boundary-layer turbulence, air quality, and convective dynamics.
-          I am interested in applying this skill set to energy forecasting,
-          climate risk, and environmental analytics.
+          Beyond climate model work, my PhD research applied
+          <strong style="color:var(--text);">Computational Fluid Dynamics (OpenFOAM LES/DNS)</strong>
+          and deep learning to atmospheric dispersion, boundary-layer turbulence, air quality forecasting,
+          and convective dynamics. I have published across Physics of Fluids, Scientific Reports, Earth Systems and Environment,
+          and Science of the Total Environment.
         </p>
-        <div class="market-box">
-          <h4>Weather Analytics for Markets</h4>
-          <p>
-            Atmospheric data carries decision-grade information for energy markets,
-            commodity supply, and insurance risk — but only after careful
-            uncertainty quantification, dataset intercomparison, and bias assessment.
-            I translate probabilistic weather and climate outputs into
-            validated, quantitative regional metrics that drive downstream models.
-          </p>
+
+        <div class="pipeline-box">
+          <h4>Research Signal Pipeline</h4>
+          <div class="pipeline-steps">
+            <span class="pipe-step">Raw NWP / Reanalysis</span>
+            <span class="pipe-arrow">→</span>
+            <span class="pipe-step">QC &amp; Regrid</span>
+            <span class="pipe-arrow">→</span>
+            <span class="pipe-step">Regional Aggregation</span>
+            <span class="pipe-arrow">→</span>
+            <span class="pipe-step">Bias Assessment</span>
+            <span class="pipe-arrow">→</span>
+            <span class="pipe-step">Probabilistic Signal</span>
+          </div>
         </div>
       </div>
 
       <div class="about-sidebar">
         <div class="info-card fade-up">
-          <h4>Education</h4>
+          <h4>Current Position</h4>
           <div class="info-row">
             <div class="info-dot"></div>
             <div>
-              <strong>PhD, Atmospheric Science</strong><br>
+              <strong>Postdoctoral Fellow</strong>
+              <span>University of Houston · 2025–present</span>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-dot info-dot-blue"></div>
+            <div>
+              <strong>PhD, Atmospheric Science</strong>
               <span>University of Houston · 2025</span>
             </div>
           </div>
+        </div>
+
+        <div class="info-card fade-up">
+          <h4>Active Research</h4>
           <div class="info-row">
-            <div class="info-dot" style="background:var(--blue)"></div>
+            <div class="info-dot"></div>
             <div>
-              <strong>Dissertation</strong><br>
-              <span>CFD &amp; Machine Learning in Atmospheric Science</span>
+              <strong>iCAM6 Water-Tagging</strong>
+              <span>SWUS precipitation source attribution · 1979–2014</span>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-dot"></div>
+            <div>
+              <strong>SMYLE Forecast Validation</strong>
+              <span>El Niño DJF 2015/16 — 40-member ensemble</span>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-dot"></div>
+            <div>
+              <strong>Obs Dataset Intercomparison</strong>
+              <span>8 gridded precipitation products · CONUS</span>
             </div>
           </div>
         </div>
 
         <div class="info-card fade-up">
-          <h4>Current Work</h4>
-          <div class="info-row">
-            <div class="info-dot"></div>
-            <div>
-              <strong>iCAM6 Water-Tagging</strong><br>
-              <span>SWUS precipitation source attribution · NCAR</span>
-            </div>
-          </div>
-          <div class="info-row">
-            <div class="info-dot"></div>
-            <div>
-              <strong>SMYLE Forecast Validation</strong><br>
-              <span>El Niño DJF 2015/16 ensemble diagnostics</span>
-            </div>
-          </div>
-          <div class="info-row">
-            <div class="info-dot"></div>
-            <div>
-              <strong>Obs Dataset Intercomparison</strong><br>
-              <span>MRMS · CPC · GPCC · GPCP · IMERG · ERA5</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="info-card fade-up">
-          <h4>Research Areas</h4>
+          <h4>Research Domains</h4>
           <div class="info-row"><div class="info-dot"></div><span>Precipitation Attribution &amp; Regional Hydrology</span></div>
-          <div class="info-row"><div class="info-dot"></div><span>Ensemble Forecast Verification</span></div>
-          <div class="info-row"><div class="info-dot"></div><span>CFD / LES — Boundary Layer &amp; Convection</span></div>
-          <div class="info-row"><div class="info-dot"></div><span>Deep Learning for Atmosphere &amp; Air Quality</span></div>
+          <div class="info-row"><div class="info-dot"></div><span>Ensemble Forecast Verification &amp; Statistics</span></div>
+          <div class="info-row"><div class="info-dot"></div><span>CFD / LES — Turbulence &amp; Convection</span></div>
+          <div class="info-row"><div class="info-dot"></div><span>Deep Learning · Air Quality · Cloud Forecasting</span></div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============================================================
+     WEATHER AS A SIGNAL
+     ============================================================ -->
+<section id="signal" class="section">
+  <div class="container">
+    <span class="section-label">Research Impact</span>
+    <h2 class="section-title">Weather Data as a <span class="gradient-text">Decision Signal</span></h2>
+    <p class="section-sub">
+      Atmospheric data carries decision-grade information — but only after careful uncertainty quantification,
+      dataset intercomparison, and probabilistic translation. This is what I build.
+    </p>
+
+    <!-- PIPELINE -->
+    <div class="signal-pipeline-border fade-up" style="margin-bottom:48px;">
+      <div class="signal-grid">
+        <div class="signal-step">
+          <div class="signal-icon">🛰</div>
+          <div class="signal-title">Raw Data</div>
+          <div class="signal-desc">NWP ensembles · Reanalysis · Satellite · Radar</div>
+        </div>
+        <div class="signal-step">
+          <div class="signal-icon">🔬</div>
+          <div class="signal-title">QC &amp; Validation</div>
+          <div class="signal-desc">Bias assessment · Dataset intercomparison · Missing data QA</div>
+        </div>
+        <div class="signal-step">
+          <div class="signal-icon">📐</div>
+          <div class="signal-title">Regional Metrics</div>
+          <div class="signal-desc">Area-weighted aggregation · HDD/CDD · Anomalies · Extremes</div>
+        </div>
+        <div class="signal-step">
+          <div class="signal-icon">📊</div>
+          <div class="signal-title">Probabilistic Signal</div>
+          <div class="signal-desc">Ensemble spread · Correlation · IOA · Skill scores</div>
+        </div>
+        <div class="signal-step">
+          <div class="signal-icon">⚡</div>
+          <div class="signal-title">Decision</div>
+          <div class="signal-desc">Energy · Commodities · Risk · Insurance · Climate</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MARKET CARDS -->
+    <h3 style="font-size:0.78rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:0.14em;color:var(--muted);margin-bottom:20px;">Applications Across Markets</h3>
+    <div class="market-cards">
+      <div class="market-card fade-up">
+        <div class="market-card-icon">⚡</div>
+        <div class="market-card-title">Energy</div>
+        <div class="market-card-desc">Temperature anomalies and forecast skill drive power demand and gas price volatility. HDD/CDD signals, wind &amp; solar generation proxies.</div>
+      </div>
+      <div class="market-card fade-up">
+        <div class="market-card-icon">🌾</div>
+        <div class="market-card-title">Commodities</div>
+        <div class="market-card-desc">Precipitation attribution and drought indices quantify crop stress. Seasonal forecast skill directly impacts expected supply distributions.</div>
+      </div>
+      <div class="market-card fade-up">
+        <div class="market-card-icon">🌀</div>
+        <div class="market-card-title">Cat Risk</div>
+        <div class="market-card-desc">Extreme precipitation and storm diagnostics are inputs to catastrophe models. Reanalysis verification underpins ILS pricing assumptions.</div>
+      </div>
+      <div class="market-card fade-up">
+        <div class="market-card-icon">🌍</div>
+        <div class="market-card-title">Climate Risk</div>
+        <div class="market-card-desc">Long-horizon ensemble diagnostics and observational dataset uncertainty quantification feed climate-adjusted risk and ESG models.</div>
       </div>
     </div>
   </div>
@@ -182,91 +310,90 @@
   <div class="container">
     <span class="section-label">Featured Research</span>
     <h2 class="section-title">Projects</h2>
-    <p class="section-subtitle">
-      Three ongoing research threads that demonstrate end-to-end atmospheric data pipelines —
-      from raw model output to validated regional metrics.
+    <p class="section-sub">
+      End-to-end atmospheric data pipelines — from raw model output and observational products
+      to validated regional metrics and quantitative signals.
     </p>
 
     <div class="grid-3">
-
-      <!-- PROJECT 1: Water Tagging -->
+      <!-- PROJECT 1 -->
       <div class="project-card fade-up">
         <div class="project-figures" title="Click to enlarge">
           <img src="assets/images/swus_tagged_precip_1979_conus_map.png"
-               alt="SWUS water-tagging source attribution map 1979" />
+               alt="SWUS water-tagging source attribution map 1979" loading="lazy" />
           <div class="fig-overlay"></div>
-          <div class="fig-zoom">click to enlarge</div>
+          <div class="fig-zoom">↗ enlarge</div>
         </div>
         <div class="project-body">
           <div class="project-tags">
             <span class="tag tag-green">iCAM6</span>
-            <span class="tag tag-green">CESM/CAM</span>
-            <span class="tag">Precipitation</span>
+            <span class="tag tag-green">CESM2</span>
+            <span class="tag">Water Tagging</span>
             <span class="tag">HPC</span>
           </div>
           <h3 class="project-title">iCAM6 Water-Tagging &amp; SWUS Precipitation Attribution</h3>
           <p class="project-desc">
-            Using isotope-enabled iCAM6 water-tagging diagnostics to trace moisture
-            pathways and quantify source-region contributions to Southwest US
-            precipitation across a 35-year historical simulation (1979–2014).
+            Isotope-enabled iCAM6 water-tagging diagnostics trace moisture pathways and quantify
+            source-region contributions to Southwest US precipitation across a 35-year historical
+            simulation. Annual and seasonal attribution maps reveal dominant moisture corridors.
           </p>
           <div class="detail-grid">
-            <div class="detail-item">
+            <div>
               <span class="detail-key">Model</span>
               <span class="detail-val">iCAM6 (CESM2 isotope)</span>
             </div>
-            <div class="detail-item">
+            <div>
               <span class="detail-key">Period</span>
               <span class="detail-val">1979–2014</span>
             </div>
-            <div class="detail-item">
-              <span class="detail-key">HPC</span>
-              <span class="detail-val">Derecho / NCAR</span>
+            <div>
+              <span class="detail-key">System</span>
+              <span class="detail-val">Derecho / NCAR HPC</span>
             </div>
-            <div class="detail-item">
+            <div>
               <span class="detail-key">Stack</span>
               <span class="detail-val">Python · xarray · cartopy</span>
             </div>
           </div>
-          <p class="project-meta">Annual &amp; seasonal source maps · Area-normalized attribution · PBS workflows</p>
+          <p class="project-meta">Area-normalized attribution · PBS workflows · 35+ years of simulation output</p>
         </div>
       </div>
 
-      <!-- PROJECT 2: SMYLE -->
+      <!-- PROJECT 2 -->
       <div class="project-card fade-up">
         <div class="project-figures" title="Click to enlarge">
           <img src="assets/images/map_best3_nca.png"
-               alt="SMYLE El Nino DJF 2015/16 best-member precipitation and Z200 maps" />
+               alt="SMYLE El Nino DJF 2015/16 best-member maps" loading="lazy" />
           <div class="fig-overlay"></div>
-          <div class="fig-zoom">click to enlarge</div>
+          <div class="fig-zoom">↗ enlarge</div>
         </div>
         <div class="project-body">
           <div class="project-tags">
             <span class="tag tag-green">CESM SMYLE</span>
-            <span class="tag tag-green">Ensemble</span>
+            <span class="tag tag-green">40-Member</span>
             <span class="tag">El Niño</span>
-            <span class="tag">Verification</span>
+            <span class="tag">IOA · Corr</span>
           </div>
           <h3 class="project-title">SMYLE DJF 2015/16 El Niño Seasonal Forecast Validation</h3>
           <p class="project-desc">
-            Validating CESM SMYLE's 40-member ensemble against seven observational datasets
-            for the record 2015/16 El Niño. Member ranking by precipitation bias reveals
-            strongly divergent circulation and moisture skill across NCA and SCA regions.
+            Validates CESM SMYLE's 40-member ensemble against seven observational datasets
+            for the record 2015/16 El Niño. Member ranking by precipitation anomaly bias
+            reveals strongly divergent circulation and moisture skill across California sub-regions.
           </p>
           <div class="detail-grid">
-            <div class="detail-item">
+            <div>
               <span class="detail-key">Ensemble</span>
               <span class="detail-val">SMYLE · 40 members</span>
             </div>
-            <div class="detail-item">
-              <span class="detail-key">Obs Reference</span>
+            <div>
+              <span class="detail-key">Obs Refs</span>
               <span class="detail-val">ERA5 · MRMS · CPC · GPCC · GPCP · IMERG</span>
             </div>
-            <div class="detail-item">
+            <div>
               <span class="detail-key">Metrics</span>
-              <span class="detail-val">IOA · Corr · Bias · RMSE</span>
+              <span class="detail-val">Willmott IOA · Corr · Bias · RMSE</span>
             </div>
-            <div class="detail-item">
+            <div>
               <span class="detail-key">Variables</span>
               <span class="detail-val">Precip · Z200/500/750 · PSL · Q850 · TMQ</span>
             </div>
@@ -275,83 +402,72 @@
         </div>
       </div>
 
-      <!-- PROJECT 3: Multi-Obs Comparison -->
+      <!-- PROJECT 3 -->
       <div class="project-card fade-up">
         <div class="project-figures" title="Click to enlarge">
           <img src="assets/images/multivar_map_best3_nca.png"
-               alt="Multi-observational precipitation product comparison maps" />
+               alt="Multi-observational precipitation product comparison" loading="lazy" />
           <div class="fig-overlay"></div>
-          <div class="fig-zoom">click to enlarge</div>
+          <div class="fig-zoom">↗ enlarge</div>
         </div>
         <div class="project-body">
           <div class="project-tags">
             <span class="tag">MRMS</span>
             <span class="tag">IMERG</span>
             <span class="tag">ERA5</span>
-            <span class="tag tag-green">Multi-Obs</span>
+            <span class="tag tag-green">8 Products</span>
           </div>
           <h3 class="project-title">Multi-Observational Precipitation Products Intercomparison</h3>
           <p class="project-desc">
-            Systematic comparison of eight gridded precipitation datasets — MRMS, CPC,
-            GPCC, GPCP, IMERG, CRU, ERA5, and iCAM6 — characterizing bias,
-            seasonality, and regional agreement across CONUS.
+            Systematic comparison of eight gridded precipitation datasets — MRMS, CPC, GPCC, GPCP,
+            IMERG, CRU, ERA5, and iCAM6 — characterizing bias, seasonality, and regional
+            agreement. Establishes observational uncertainty baselines for model verification.
           </p>
           <div class="detail-grid">
-            <div class="detail-item">
+            <div>
               <span class="detail-key">Datasets</span>
-              <span class="detail-val">8 products (radar, gauge, satellite, reanalysis)</span>
+              <span class="detail-val">Radar · Gauge · Satellite · Reanalysis · GCM</span>
             </div>
-            <div class="detail-item">
+            <div>
               <span class="detail-key">Domain</span>
               <span class="detail-val">CONUS · NCA · SCA · SWUS</span>
             </div>
-            <div class="detail-item">
+            <div>
               <span class="detail-key">Analysis</span>
               <span class="detail-val">Annual cycle · Spatial mean · Unit harmonization</span>
             </div>
-            <div class="detail-item">
+            <div>
               <span class="detail-key">QA</span>
-              <span class="detail-val">Missing data · Regridding · Masking</span>
+              <span class="detail-val">Missing data · Regridding · Land masking</span>
             </div>
           </div>
-          <p class="project-meta">Establishes observational uncertainty baseline for model verification</p>
+          <p class="project-meta">Observational spread used as uncertainty bound in model skill assessment</p>
         </div>
       </div>
+    </div>
 
-    </div><!-- /.grid-3 -->
-
-    <!-- Additional result figures -->
-    <div style="margin-top: 40px;">
-      <h3 style="color:var(--muted); font-size:0.8rem; font-family:var(--mono); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:20px;">
-        Additional Results — iCAM6 Rainfall-Rate Analysis
-      </h3>
+    <!-- ADDITIONAL FIGURES -->
+    <div style="margin-top: 36px;">
+      <p style="font-size:0.75rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:0.14em;color:var(--muted);margin-bottom:18px;">Additional Results — iCAM6 Rainfall-Rate &amp; SMYLE Skill Diagnostics</p>
       <div class="grid-2 fade-up">
-        <div class="project-card" style="cursor:default;">
+        <div class="project-card">
           <div class="project-figures" title="Click to enlarge">
-            <img src="assets/images/fig1_annual_rr_swus.png"
-                 alt="iCAM6 annual rainfall rate SWUS comparison" />
+            <img src="assets/images/fig1_annual_rr_swus.png" alt="iCAM6 annual rainfall rate SWUS" loading="lazy" />
             <div class="fig-overlay"></div>
-            <div class="fig-zoom">click to enlarge</div>
+            <div class="fig-zoom">↗ enlarge</div>
           </div>
           <div class="project-body">
-            <p class="project-desc" style="margin:0; font-size:0.85rem;">
-              Annual mean rainfall-rate comparison between iCAM6 and observations for the
-              Southwest US. All-precipitation and rain-only partitioning.
-            </p>
+            <p class="project-desc" style="margin:0;font-size:0.83rem;">Annual mean rainfall-rate comparison: iCAM6 vs. observations over SWUS. All-precipitation and rain-only partitioning across regional boxes.</p>
           </div>
         </div>
-        <div class="project-card" style="cursor:default;">
+        <div class="project-card">
           <div class="project-figures" title="Click to enlarge">
-            <img src="assets/images/scenario_nca_monthly_corr_ioa.png"
-                 alt="SMYLE NCA monthly correlation and IOA scenarios" />
+            <img src="assets/images/scenario_nca_monthly_corr_ioa.png" alt="SMYLE NCA monthly correlation and IOA" loading="lazy" />
             <div class="fig-overlay"></div>
-            <div class="fig-zoom">click to enlarge</div>
+            <div class="fig-zoom">↗ enlarge</div>
           </div>
           <div class="project-body">
-            <p class="project-desc" style="margin:0; font-size:0.85rem;">
-              Monthly IOA and spatial correlation for SMYLE NCA-ranked members across
-              ranking scenarios. Fixed [-1, 1] axis. Best vs. worst member spread.
-            </p>
+            <p class="project-desc" style="margin:0;font-size:0.83rem;">Monthly IOA and spatial correlation for SMYLE NCA-ranked members. Best vs. worst precip member spread shown with all-member mean reference.</p>
           </div>
         </div>
       </div>
@@ -369,16 +485,13 @@
   <div class="container">
     <span class="section-label">Technical Expertise</span>
     <h2 class="section-title">Skills</h2>
-    <p class="section-subtitle">
-      Built through years of HPC-scale climate model analysis, CFD simulations, and applied ML research.
-    </p>
+    <p class="section-sub">Built through years of HPC-scale climate model analysis, CFD simulations, and applied atmospheric ML research.</p>
 
     <div class="skills-container">
-
       <div class="skill-group fade-up">
         <h3>Weather &amp; Climate Data</h3>
         <div class="skill-item">
-          <div class="skill-row"><span class="skill-name">iCAM6 / CESM / CAM</span><span class="skill-level">Expert</span></div>
+          <div class="skill-row"><span class="skill-name">iCAM6 / CESM / CAM6</span><span class="skill-level">Expert</span></div>
           <div class="skill-bar"><div class="skill-fill" data-width="95%"></div></div>
         </div>
         <div class="skill-item">
@@ -407,15 +520,15 @@
         </div>
         <div class="skill-item">
           <div class="skill-row"><span class="skill-name">Bash / PBS / HPC Workflows</span><span class="skill-level">Expert</span></div>
-          <div class="skill-bar"><div class="skill-fill" data-width="92%"></div></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="93%"></div></div>
         </div>
         <div class="skill-item">
-          <div class="skill-row"><span class="skill-name">OpenFOAM (CFD / LES)</span><span class="skill-level">Advanced</span></div>
+          <div class="skill-row"><span class="skill-name">OpenFOAM (CFD / LES / DNS)</span><span class="skill-level">Advanced</span></div>
           <div class="skill-bar"><div class="skill-fill" data-width="88%"></div></div>
         </div>
         <div class="skill-item">
           <div class="skill-row"><span class="skill-name">PyTorch / TensorFlow (deep learning)</span><span class="skill-level">Advanced</span></div>
-          <div class="skill-bar"><div class="skill-fill" data-width="82%"></div></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="83%"></div></div>
         </div>
         <div class="skill-item">
           <div class="skill-row"><span class="skill-name">Dask (parallel &amp; out-of-core)</span><span class="skill-level">Advanced</span></div>
@@ -427,23 +540,23 @@
         <h3>Analysis &amp; Modeling</h3>
         <div class="skill-item">
           <div class="skill-row"><span class="skill-name">Probabilistic forecasting &amp; verification</span><span class="skill-level">Expert</span></div>
-          <div class="skill-bar"><div class="skill-fill" data-width="92%"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-row"><span class="skill-name">Time series analysis &amp; extremes</span><span class="skill-level">Expert</span></div>
-          <div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="93%"></div></div>
         </div>
         <div class="skill-item">
           <div class="skill-row"><span class="skill-name">Spatial statistics &amp; regridding</span><span class="skill-level">Expert</span></div>
           <div class="skill-bar"><div class="skill-fill" data-width="92%"></div></div>
         </div>
         <div class="skill-item">
-          <div class="skill-row"><span class="skill-name">LES / DNS turbulence modeling</span><span class="skill-level">Advanced</span></div>
-          <div class="skill-bar"><div class="skill-fill" data-width="85%"></div></div>
+          <div class="skill-row"><span class="skill-name">Time series &amp; extreme-value analysis</span><span class="skill-level">Expert</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-row"><span class="skill-name">LES / DNS turbulence &amp; convection</span><span class="skill-level">Advanced</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="86%"></div></div>
         </div>
         <div class="skill-item">
           <div class="skill-row"><span class="skill-name">Air quality &amp; dispersion (PM2.5)</span><span class="skill-level">Advanced</span></div>
-          <div class="skill-bar"><div class="skill-fill" data-width="82%"></div></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="83%"></div></div>
         </div>
       </div>
 
@@ -458,19 +571,18 @@
           <div class="skill-bar"><div class="skill-fill" data-width="94%"></div></div>
         </div>
         <div class="skill-item">
-          <div class="skill-row"><span class="skill-name">Git / GitHub</span><span class="skill-level">Proficient</span></div>
-          <div class="skill-bar"><div class="skill-fill" data-width="80%"></div></div>
-        </div>
-        <div class="skill-item">
           <div class="skill-row"><span class="skill-name">Linux / Bash scripting</span><span class="skill-level">Expert</span></div>
           <div class="skill-bar"><div class="skill-fill" data-width="93%"></div></div>
         </div>
+        <div class="skill-item">
+          <div class="skill-row"><span class="skill-name">Git / GitHub</span><span class="skill-level">Proficient</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="80%"></div></div>
+        </div>
       </div>
+    </div>
 
-    </div><!-- /.skills-container -->
-
-    <div style="margin-top:36px;">
-      <h4 style="font-size:0.75rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);margin-bottom:14px;">Full Tool Stack</h4>
+    <div style="margin-top:32px;">
+      <p style="font-size:0.72rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:0.14em;color:var(--muted);margin-bottom:14px;">Full Tool Stack</p>
       <div class="tools-cloud fade-up">
         <span class="tool-chip">iCAM6</span>
         <span class="tool-chip">CESM2</span>
@@ -501,7 +613,6 @@
         <span class="tool-chip">LaTeX</span>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -514,139 +625,76 @@
   <div class="container">
     <span class="section-label">Research Output</span>
     <h2 class="section-title">Publications</h2>
-    <p class="section-subtitle">
-      Peer-reviewed papers, conference contributions, and dissertation work.
-      Full list on <a href="https://scholar.google.com/citations?user=nXgr5iUAAAAJ&hl=en" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;">Google Scholar</a>.
+    <p class="section-sub">
+      78+ citations across peer-reviewed journals, conference contributions, and dissertation work.
+      Full list on <a href="https://scholar.google.com/citations?user=nXgr5iUAAAAJ&hl=en" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;">Google Scholar →</a>
     </p>
 
     <div class="pub-list">
-
       <a class="pub-item fade-up" href="https://scholar.google.com/citations?user=nXgr5iUAAAAJ&hl=en" target="_blank" rel="noopener">
         <div class="pub-index">1</div>
         <div class="pub-content">
-          <div class="pub-title">
-            Reaching the Betz limit experimentally and numerically
-            <span class="cite-badge">44 citations</span>
-          </div>
-          <div class="pub-meta">
-            <span class="pub-journal">Energy Equipment and Systems</span>
-            &nbsp;·&nbsp; <span class="pub-year">2019</span>
-          </div>
+          <div class="pub-title">Reaching the Betz limit experimentally and numerically <span class="cite-badge">44 citations</span></div>
+          <div class="pub-meta"><span class="pub-journal">Energy Equipment and Systems</span> &nbsp;·&nbsp; <span class="pub-year">2019</span></div>
         </div>
       </a>
-
       <a class="pub-item fade-up" href="https://scholar.google.com/citations?user=nXgr5iUAAAAJ&hl=en" target="_blank" rel="noopener">
         <div class="pub-index">2</div>
         <div class="pub-content">
-          <div class="pub-title">
-            Experimental and numerical investigations of actuator disks for wind turbines
-            <span class="cite-badge">9 citations</span>
-          </div>
-          <div class="pub-meta">
-            <span class="pub-journal">Energy Science &amp; Engineering</span>
-            &nbsp;·&nbsp; <span class="pub-year">2020</span>
-          </div>
+          <div class="pub-title">Experimental and numerical investigations of actuator disks for wind turbines <span class="cite-badge">9 citations</span></div>
+          <div class="pub-meta"><span class="pub-journal">Energy Science &amp; Engineering</span> &nbsp;·&nbsp; <span class="pub-year">2020</span></div>
         </div>
       </a>
-
       <a class="pub-item fade-up" href="https://scholar.google.com/citations?user=nXgr5iUAAAAJ&hl=en" target="_blank" rel="noopener">
         <div class="pub-index">3</div>
         <div class="pub-content">
-          <div class="pub-title">
-            Large eddy simulation of sneeze plumes and particles in a poorly ventilated outdoor air condition: A case study of the University of Houston main campus
-            <span class="cite-badge">9 citations</span>
-          </div>
-          <div class="pub-meta">
-            <span class="pub-journal">Science of The Total Environment</span>
-            &nbsp;·&nbsp; <span class="pub-year">2023</span>
-          </div>
+          <div class="pub-title">Large eddy simulation of sneeze plumes and particles in a poorly ventilated outdoor air condition: A case study of the University of Houston main campus <span class="cite-badge">9 citations</span></div>
+          <div class="pub-meta"><span class="pub-journal">Science of The Total Environment</span> &nbsp;·&nbsp; <span class="pub-year">2023</span></div>
         </div>
       </a>
-
       <a class="pub-item fade-up" href="https://scholar.google.com/citations?user=nXgr5iUAAAAJ&hl=en" target="_blank" rel="noopener">
         <div class="pub-index">4</div>
         <div class="pub-content">
-          <div class="pub-title">
-            An intercomparison of wall fluxes in a turbulent thermal convection chamber: Direct numerical simulations and wall-modeled large-eddy simulations enhanced by machine learning
-            <span class="cite-badge">6 citations</span>
-          </div>
-          <div class="pub-meta">
-            <span class="pub-journal">Physics of Fluids</span>
-            &nbsp;·&nbsp; <span class="pub-year">2025</span>
-          </div>
+          <div class="pub-title">An intercomparison of wall fluxes in a turbulent thermal convection chamber: DNS and wall-modeled LES enhanced by machine learning <span class="cite-badge">6 citations</span></div>
+          <div class="pub-meta"><span class="pub-journal">Physics of Fluids</span> &nbsp;·&nbsp; <span class="pub-year">2025</span></div>
         </div>
       </a>
-
       <a class="pub-item fade-up" href="https://scholar.google.com/citations?user=nXgr5iUAAAAJ&hl=en" target="_blank" rel="noopener">
         <div class="pub-index">5</div>
         <div class="pub-content">
-          <div class="pub-title">
-            Forecasting PM2.5 and Assessing Health Impacts in Texas Using Advanced Deep Learning Models
-            <span class="cite-badge">4 citations</span>
-          </div>
-          <div class="pub-meta">
-            <span class="pub-journal">Earth Systems and Environment</span>
-            &nbsp;·&nbsp; <span class="pub-year">2025</span>
-          </div>
+          <div class="pub-title">Forecasting PM2.5 and Assessing Health Impacts in Texas Using Advanced Deep Learning Models <span class="cite-badge">4 citations</span></div>
+          <div class="pub-meta"><span class="pub-journal">Earth Systems and Environment</span> &nbsp;·&nbsp; <span class="pub-year">2025</span></div>
         </div>
       </a>
-
       <a class="pub-item fade-up" href="https://scholar.google.com/citations?user=nXgr5iUAAAAJ&hl=en" target="_blank" rel="noopener">
         <div class="pub-index">6</div>
         <div class="pub-content">
-          <div class="pub-title">
-            Exploring the impact of surface topography on Rayleigh–Bénard dry convection in the Pi cloud chamber using OpenFOAM
-            <span class="cite-badge">3 citations</span>
-          </div>
-          <div class="pub-meta">
-            <span class="pub-journal">Atmospheric Research</span>
-            &nbsp;·&nbsp; <span class="pub-year">2025</span>
-          </div>
+          <div class="pub-title">Exploring the impact of surface topography on Rayleigh–Bénard dry convection in the Pi cloud chamber using OpenFOAM <span class="cite-badge">3 citations</span></div>
+          <div class="pub-meta"><span class="pub-journal">Atmospheric Research</span> &nbsp;·&nbsp; <span class="pub-year">2025</span></div>
         </div>
       </a>
-
       <a class="pub-item fade-up" href="https://scholar.google.com/citations?user=nXgr5iUAAAAJ&hl=en" target="_blank" rel="noopener">
         <div class="pub-index">7</div>
         <div class="pub-content">
-          <div class="pub-title">
-            Using multi-satellite observations to constrain ammonia emissions and unlock their potential over open water
-            <span class="cite-badge">2 citations</span>
-          </div>
-          <div class="pub-meta">
-            <span class="pub-journal">Scientific Reports</span>
-            &nbsp;·&nbsp; <span class="pub-year">2025</span>
-          </div>
+          <div class="pub-title">Using multi-satellite observations to constrain ammonia emissions and unlock their potential over open water <span class="cite-badge">2 citations</span></div>
+          <div class="pub-meta"><span class="pub-journal">Scientific Reports</span> &nbsp;·&nbsp; <span class="pub-year">2025</span></div>
         </div>
       </a>
-
       <a class="pub-item fade-up" href="https://scholar.google.com/citations?user=nXgr5iUAAAAJ&hl=en" target="_blank" rel="noopener">
         <div class="pub-index">8</div>
         <div class="pub-content">
-          <div class="pub-title">
-            Short-Term Forecasting of Total Cloud Cover over the United States and Texas Gulf Coast with Graph-Based Deep Learning
-          </div>
-          <div class="pub-meta">
-            <span class="pub-journal">Earth Systems and Environment</span>
-            &nbsp;·&nbsp; <span class="pub-year">2025</span>
-          </div>
+          <div class="pub-title">Short-Term Forecasting of Total Cloud Cover over the United States and Texas Gulf Coast with Graph-Based Deep Learning</div>
+          <div class="pub-meta"><span class="pub-journal">Earth Systems and Environment</span> &nbsp;·&nbsp; <span class="pub-year">2025</span></div>
         </div>
       </a>
-
       <a class="pub-item fade-up" href="https://scholar.google.com/citations?user=nXgr5iUAAAAJ&hl=en" target="_blank" rel="noopener">
         <div class="pub-index">9</div>
         <div class="pub-content">
-          <div class="pub-title">
-            Computational Fluid Dynamics and Machine Learning Applications in Atmospheric Science
-          </div>
-          <div class="pub-meta">
-            <span class="pub-journal">PhD Dissertation · University of Houston</span>
-            &nbsp;·&nbsp; <span class="pub-year">2025</span>
-          </div>
+          <div class="pub-title">Computational Fluid Dynamics and Machine Learning Applications in Atmospheric Science</div>
+          <div class="pub-meta"><span class="pub-journal">PhD Dissertation · University of Houston</span> &nbsp;·&nbsp; <span class="pub-year">2025</span></div>
         </div>
       </a>
-
     </div>
-
   </div>
 </section>
 
@@ -660,19 +708,21 @@
     <div class="contact-grid">
       <div class="contact-text">
         <span class="section-label">Contact</span>
-        <h2 class="section-title">Let's Talk</h2>
+        <h2 class="section-title">Let's <span class="gradient-text">Talk</span></h2>
         <p>
-          I'm interested in research collaborations and opportunities at the intersection
+          I'm open to research collaborations and opportunities at the intersection
           of atmospheric science, climate risk, energy forecasting, and data analytics.
         </p>
         <p style="margin-top:12px;">
-          Whether you're looking for deep expertise in climate model validation,
-          probabilistic weather-to-signal pipelines, or applied CFD/ML for atmospheric problems —
-          I'd love to connect.
+          Whether you need expertise in climate model validation,
+          probabilistic weather-to-signal pipelines, CFD, or deep learning for atmospheric
+          applications — I'd be glad to connect.
         </p>
         <a href="mailto:hadizkia@gmail.com" class="contact-email">hadizkia@gmail.com</a>
-        <div class="hero-actions" style="margin-bottom:0;">
-          <a href="mailto:hadizkia@gmail.com" class="btn btn-primary">Send Email</a>
+        <div>
+          <a href="mailto:hadizkia@gmail.com" class="btn btn-primary">
+            <span class="btn-icon">✉</span> Send Email
+          </a>
         </div>
       </div>
 
@@ -689,23 +739,23 @@
           <div class="contact-icon">📖</div>
           <div class="contact-link-label">
             <strong>Google Scholar</strong>
-            <span>78+ citations · 11 papers</span>
+            <span>78+ citations · h-index 4</span>
           </div>
           <span style="color:var(--faint);">→</span>
         </a>
-        <a href="https://github.com/hadizkia" target="_blank" rel="noopener" class="contact-link" id="github-link">
+        <a href="https://github.com/hadizkia" target="_blank" rel="noopener" class="contact-link">
           <div class="contact-icon">⌨</div>
           <div class="contact-link-label">
             <strong>GitHub</strong>
-            <span>Code &amp; workflows</span>
+            <span>hadizkia</span>
           </div>
           <span style="color:var(--faint);">→</span>
         </a>
         <div class="contact-link" style="cursor:default;">
-          <div class="contact-icon">🏔</div>
+          <div class="contact-icon">🏛</div>
           <div class="contact-link-label">
-            <strong>NCAR / UCAR</strong>
-            <span>Boulder, CO</span>
+            <strong>University of Houston</strong>
+            <span>Postdoctoral Fellow · Houston, TX</span>
           </div>
         </div>
       </div>
@@ -718,15 +768,15 @@
      ============================================================ -->
 <footer>
   <div class="container">
-    Hadi Zanganeh Kia &nbsp;·&nbsp; Atmospheric Scientist &nbsp;·&nbsp;
-    <a href="https://scholar.google.com/citations?user=nXgr5iUAAAAJ&hl=en" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;">scholar.google.com</a>
+    Hadi Zanganeh Kia &nbsp;·&nbsp; Postdoctoral Fellow, University of Houston &nbsp;·&nbsp;
+    <a href="https://scholar.google.com/citations?user=nXgr5iUAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
   </div>
 </footer>
 
 <!-- LIGHTBOX -->
 <div id="lightbox">
   <button id="lightbox-close" aria-label="Close">×</button>
-  <img id="lightbox-img" src="" alt="Figure enlarged" />
+  <img id="lightbox-img" src="" alt="" />
 </div>
 
 <script src="assets/js/main.js"></script>
