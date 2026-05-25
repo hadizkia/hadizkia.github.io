@@ -476,6 +476,184 @@ p   { color: var(--muted); }
 .stat-label { font-size: 0.75rem; color: var(--muted); margin-top: 5px; letter-spacing: 0.06em; text-transform: uppercase; }
 
 /* ================================================================
+   SCROLL PROGRESS BAR
+   ================================================================ */
+#progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent), var(--blue), var(--purple));
+  z-index: 9999;
+  transition: width 0.1s linear;
+  box-shadow: 0 0 8px rgba(0,212,170,0.6);
+}
+
+/* ================================================================
+   CURSOR GLOW
+   ================================================================ */
+#cursor-glow {
+  position: fixed;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,212,170,0.055) 0%, transparent 68%);
+  pointer-events: none;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  transition: transform 0.08s linear;
+  will-change: transform;
+}
+
+/* ================================================================
+   ATMOSPHERIC DATA TICKER
+   ================================================================ */
+.atmo-ticker-wrap {
+  overflow: hidden;
+  margin-bottom: 36px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(0,0,0,0.25);
+  backdrop-filter: blur(8px);
+  padding: 0;
+  max-width: 640px;
+  position: relative;
+}
+.atmo-ticker-wrap::before,
+.atmo-ticker-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 40px;
+  z-index: 2;
+  pointer-events: none;
+}
+.atmo-ticker-wrap::before { left: 0;  background: linear-gradient(90deg, rgba(5,11,24,1), transparent); }
+.atmo-ticker-wrap::after  { right: 0; background: linear-gradient(-90deg, rgba(5,11,24,1), transparent); }
+
+.atmo-ticker {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 9px 16px;
+  white-space: nowrap;
+  animation: ticker-scroll 30s linear infinite;
+  width: max-content;
+}
+@keyframes ticker-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.atmo-ticker-wrap:hover .atmo-ticker { animation-play-state: paused; }
+
+.ticker-item {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.ticker-sep {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: var(--faint);
+  margin: 0 14px;
+  letter-spacing: 0.2em;
+}
+.ticker-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: pulse-dot 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+.ticker-dot.blue-dot { background: var(--blue); }
+.ticker-dot.enso-dot { background: var(--amber); }
+
+/* ================================================================
+   3D CARD TILT + SHINE
+   ================================================================ */
+.project-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.card-shine {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  border-radius: var(--rad-lg);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+  background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.06) 0%, transparent 65%);
+}
+.project-card:hover .card-shine { opacity: 1; }
+.project-card { position: relative; }
+
+/* ================================================================
+   ENSO LIVE INDICATOR
+   ================================================================ */
+.enso-card {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 20px 28px;
+  border-radius: var(--rad-lg);
+  border: 1px solid var(--border);
+  background: var(--card);
+  backdrop-filter: blur(20px);
+  margin-bottom: 48px;
+  transition: border-color 0.3s;
+  flex-wrap: wrap;
+}
+.enso-card:hover { border-color: var(--border-h); }
+.enso-card-left { min-width: 120px; }
+.enso-label {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--faint);
+  margin-bottom: 6px;
+}
+.enso-phase {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+  transition: color 0.5s;
+}
+.enso-phase.el-nino  { color: #f97316; }
+.enso-phase.la-nina  { color: #60a5fa; }
+.enso-phase.neutral  { color: var(--muted); }
+.enso-oni {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+.enso-card-center { flex: 1; min-width: 180px; }
+#enso-canvas { display: block; width: 100%; height: 60px; }
+.enso-card-right {
+  text-align: right;
+  min-width: 120px;
+}
+.enso-relevance {
+  font-size: 0.75rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+.enso-relevance strong { color: var(--accent); }
+.enso-link {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--accent);
+  text-decoration: none;
+}
+.enso-link:hover { text-decoration: underline; }
+
+/* ================================================================
    WEATHER WIDGET
    ================================================================ */
 #weather-widget {

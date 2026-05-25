@@ -1,4 +1,47 @@
 /* ================================================================
+   SCROLL PROGRESS BAR
+   ================================================================ */
+const progressBar = document.getElementById('progress-bar');
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+  if (progressBar) progressBar.style.width = Math.min(pct, 100) + '%';
+}, { passive: true });
+
+/* ================================================================
+   CURSOR GLOW
+   ================================================================ */
+(function () {
+  const glow = document.getElementById('cursor-glow');
+  if (!glow) return;
+  let mx = -999, my = -999;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; }, { passive: true });
+  function frame() { glow.style.transform = `translate(${mx - 190}px, ${my - 190}px)`; requestAnimationFrame(frame); }
+  frame();
+})();
+
+/* ================================================================
+   3D CARD TILT + SHINE
+   ================================================================ */
+document.querySelectorAll('.project-card').forEach(card => {
+  const shine = card.querySelector('.card-shine');
+  card.addEventListener('mousemove', e => {
+    const r  = card.getBoundingClientRect();
+    const x  = e.clientX - r.left;
+    const y  = e.clientY - r.top;
+    const cx = r.width  / 2;
+    const cy = r.height / 2;
+    const rX = ((y - cy) / cy) * -7;
+    const rY = ((x - cx) / cx) *  7;
+    card.style.transform = `perspective(900px) rotateX(${rX}deg) rotateY(${rY}deg) translateY(-6px) scale(1.01)`;
+    if (shine) shine.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255,255,255,0.09) 0%, transparent 60%)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+    if (shine) shine.style.background = '';
+  });
+});
+
+/* ================================================================
    NAVBAR SCROLL
    ================================================================ */
 const navbar = document.getElementById('navbar');
@@ -305,4 +348,147 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
       widget.classList.add('loaded');
     } catch (_) { /* silently fail */ }
   }, () => { /* geolocation denied — widget stays hidden */ }, { timeout: 8000 });
+})();
+
+/* ================================================================
+   ENSO LIVE INDICATOR + ONI SPARKLINE
+   ================================================================ */
+(function () {
+  const phaseEl  = document.getElementById('enso-phase');
+  const oniEl    = document.getElementById('enso-oni-val');
+  const valEls   = [document.getElementById('enso-val'), document.getElementById('enso-val-2')];
+  const dotEls   = [document.getElementById('enso-dot'), document.getElementById('enso-dot-2')];
+  const canvas   = document.getElementById('enso-canvas');
+  if (!phaseEl) return;
+
+  function classifyONI(v) {
+    if (v >=  0.5) return { phase: 'El Niño',   cls: 'el-nino', color: '#f97316' };
+    if (v <= -0.5) return { phase: 'La Niña',   cls: 'la-nina', color: '#60a5fa' };
+    return           { phase: 'Neutral',   cls: 'neutral', color: '#94a3b8' };
+  }
+
+  function drawSparkline(data, currentColor) {
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width, H = canvas.height;
+    ctx.clearRect(0, 0, W, H);
+    const min = Math.min(...data, -1.5), max = Math.max(...data, 1.5);
+    const toY = v => H - ((v - min) / (max - min)) * H * 0.8 - H * 0.1;
+    const toX = (i) => (i / (data.length - 1)) * W;
+
+    // Zero line
+    ctx.beginPath();
+    ctx.strokeStyle = 'rgba(255,255,255,0.08)';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([4, 4]);
+    ctx.moveTo(0, toY(0)); ctx.lineTo(W, toY(0));
+    ctx.stroke(); ctx.setLineDash([]);
+
+    // Fill area
+    const grad = ctx.createLinearGradient(0, 0, 0, H);
+    grad.addColorStop(0, currentColor + '55');
+    grad.addColorStop(1, currentColor + '00');
+    ctx.beginPath();
+    data.forEach((v, i) => i === 0 ? ctx.moveTo(toX(i), toY(v)) : ctx.lineTo(toX(i), toY(v)));
+    ctx.lineTo(toX(data.length - 1), H);
+    ctx.lineTo(0, H);
+    ctx.closePath();
+    ctx.fillStyle = grad;
+    ctx.fill();
+
+    // Line
+    ctx.beginPath();
+    ctx.strokeStyle = currentColor;
+    ctx.lineWidth = 1.8;
+    ctx.lineJoin = 'round';
+    data.forEach((v, i) => i === 0 ? ctx.moveTo(toX(i), toY(v)) : ctx.lineTo(toX(i), toY(v)));
+    ctx.stroke();
+
+    // Latest dot
+    const lx = toX(data.length - 1), ly = toY(data[data.length - 1]);
+    ctx.beginPath();
+    ctx.arc(lx, ly, 4, 0, Math.PI * 2);
+    ctx.fillStyle = currentColor;
+    ctx.fill();
+  }
+
+  async function fetchENSO() {
+    // Try NOAA ONI text file via CORS proxy
+    const proxy = 'https://corsproxy.io/?';
+    const src   = 'https://www.cpc.ncep.noaa.gov/data/indices/oni.ascii.txt';
+    const res   = await fetch(proxy + encodeURIComponent(src));
+    if (!res.ok) throw new Error('fetch failed');
+    const text = await res.text();
+    const lines = text.trim().split('\n').filter(l => /^\d{4}/.test(l));
+    // Each line: SEAS YR ANOM  e.g.  DJF 2016 2.3
+    // Last 24 entries ≈ 2 years of monthly values
+    const vals = lines.slice(-24).map(l => parseFloat(l.trim().split(/\s+/)[2])).filter(v => !isNaN(v));
+    const latest = vals[vals.length - 1];
+    return { oni: latest, history: vals };
+  }
+
+  async function fetchENSOFallback() {
+    // Alternative: NOAA JSON via different proxy
+    const proxy = 'https://api.allorigins.win/raw?url=';
+    const src   = 'https://www.cpc.ncep.noaa.gov/data/indices/oni.ascii.txt';
+    const res   = await fetch(proxy + encodeURIComponent(src));
+    if (!res.ok) throw new Error();
+    const text  = await res.text();
+    const lines = text.trim().split('\n').filter(l => /^\d{4}/.test(l));
+    const vals  = lines.slice(-24).map(l => parseFloat(l.trim().split(/\s+/)[2])).filter(v => !isNaN(v));
+    return { oni: vals[vals.length - 1], history: vals };
+  }
+
+  function applyENSO(oni, history) {
+    const { phase, cls, color } = classifyONI(oni);
+    if (phaseEl) { phaseEl.textContent = phase; phaseEl.className = 'enso-phase ' + cls; }
+    if (oniEl)   oniEl.textContent = (oni >= 0 ? '+' : '') + oni.toFixed(1) + '°C';
+    valEls.forEach(el => { if (el) { el.textContent = phase; el.style.color = color; } });
+    dotEls.forEach(el => { if (el) el.style.background = color; });
+    drawSparkline(history, color);
+  }
+
+  // Try primary, then fallback, then hardcoded default
+  fetchENSO()
+    .then(({ oni, history }) => applyENSO(oni, history))
+    .catch(() => fetchENSOFallback()
+      .then(({ oni, history }) => applyENSO(oni, history))
+      .catch(() => applyENSO(-0.1, [-0.3,-0.2,-0.1,0.0,0.1,0.0,-0.1,-0.2,-0.1,0.0,0.1,-0.1]))
+    );
+})();
+
+/* ================================================================
+   LIVE CO₂  (NOAA GML weekly Mauna Loa)
+   ================================================================ */
+(function () {
+  const v1 = document.getElementById('co2-val');
+  const v2 = document.getElementById('co2-val-2');
+  if (!v1) return;
+
+  async function fetchCO2() {
+    const proxy = 'https://corsproxy.io/?';
+    const src   = 'https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_weekly_mlo.csv';
+    const res   = await fetch(proxy + encodeURIComponent(src));
+    if (!res.ok) throw new Error();
+    const text = await res.text();
+    const lines = text.split('\n').filter(l => l.trim() && !l.startsWith('#'));
+    const last  = lines[lines.length - 1].split(',');
+    return parseFloat(last[4]);   // column 5 = CO2 ppm
+  }
+
+  async function fetchCO2Fallback() {
+    const res  = await fetch('https://api.allorigins.win/raw?url=' +
+      encodeURIComponent('https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_weekly_mlo.csv'));
+    const text = await res.text();
+    const lines = text.split('\n').filter(l => l.trim() && !l.startsWith('#'));
+    const last  = lines[lines.length - 1].split(',');
+    return parseFloat(last[4]);
+  }
+
+  function setCO2(ppm) {
+    const str = isNaN(ppm) ? '—' : ppm.toFixed(1);
+    [v1, v2].forEach(el => { if (el) el.textContent = str; });
+  }
+
+  fetchCO2().then(setCO2).catch(() => fetchCO2Fallback().then(setCO2).catch(() => setCO2(424.0)));
 })();

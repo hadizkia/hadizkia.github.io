@@ -12,6 +12,12 @@
 </head>
 <body>
 
+<!-- SCROLL PROGRESS BAR -->
+<div id="progress-bar"></div>
+
+<!-- CURSOR GLOW -->
+<div id="cursor-glow"></div>
+
 <!-- ============================================================
      NAVBAR
      ============================================================ -->
@@ -78,6 +84,28 @@
         <a href="https://www.linkedin.com/in/hadikia/" target="_blank" rel="noopener" class="btn btn-outline">
           <span class="btn-icon">💼</span> LinkedIn
         </a>
+      </div>
+
+      <!-- ATMOSPHERIC DATA TICKER -->
+      <div class="atmo-ticker-wrap">
+        <div class="atmo-ticker" id="atmo-ticker">
+          <span class="ticker-item"><span class="ticker-dot"></span>CO₂ <span id="co2-val">—</span> ppm · Mauna Loa</span>
+          <span class="ticker-sep">·····</span>
+          <span class="ticker-item"><span class="ticker-dot enso-dot" id="enso-dot"></span>ENSO <span id="enso-val">Fetching…</span></span>
+          <span class="ticker-sep">·····</span>
+          <span class="ticker-item"><span class="ticker-dot blue-dot"></span>SMYLE ensemble · 40 members · DJF 2015/16</span>
+          <span class="ticker-sep">·····</span>
+          <span class="ticker-item"><span class="ticker-dot"></span>iCAM6 water-tag · 1979–2014 · 35 yr simulation</span>
+          <span class="ticker-sep">·····</span>
+          <span class="ticker-item"><span class="ticker-dot blue-dot"></span>Precipitation products · 8 datasets · CONUS</span>
+          <span class="ticker-sep">·····</span>
+          <span class="ticker-item"><span class="ticker-dot"></span>CO₂ <span id="co2-val-2">—</span> ppm · Mauna Loa</span>
+          <span class="ticker-sep">·····</span>
+          <span class="ticker-item"><span class="ticker-dot enso-dot" id="enso-dot-2"></span>ENSO <span id="enso-val-2">Fetching…</span></span>
+          <span class="ticker-sep">·····</span>
+          <span class="ticker-item"><span class="ticker-dot blue-dot"></span>SMYLE ensemble · 40 members · DJF 2015/16</span>
+          <span class="ticker-sep">·····</span>
+        </div>
       </div>
 
       <div class="hero-stats">
@@ -311,6 +339,22 @@
       </div>
     </div>
 
+    <!-- ENSO LIVE INDICATOR -->
+    <div id="enso-card" class="enso-card fade-up">
+      <div class="enso-card-left">
+        <div class="enso-label">ENSO STATE</div>
+        <div class="enso-phase" id="enso-phase">Fetching…</div>
+        <div class="enso-oni">ONI: <span id="enso-oni-val">—</span></div>
+      </div>
+      <div class="enso-card-center">
+        <canvas id="enso-canvas" width="220" height="60"></canvas>
+      </div>
+      <div class="enso-card-right">
+        <div class="enso-relevance">Relevant to your<br><strong>SMYLE DJF 2015/16</strong><br>research</div>
+        <a href="https://www.cpc.ncep.noaa.gov/products/analysis_monitoring/enso_advisory/" target="_blank" rel="noopener" class="enso-link">NOAA CPC →</a>
+      </div>
+    </div>
+
     <!-- MARKET CARDS -->
     <h3 style="font-size:0.78rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:0.14em;color:var(--muted);margin-bottom:20px;">Applications Across Markets</h3>
     <div class="market-cards">
@@ -355,6 +399,7 @@
     <div class="grid-3">
       <!-- PROJECT 1 -->
       <div class="project-card fade-up">
+        <div class="card-shine"></div>
         <div class="project-figures" title="Click to enlarge">
           <img src="assets/images/swus_tagged_precip_1979_conus_map.png"
                alt="SWUS water-tagging source attribution map 1979" loading="lazy" />
@@ -398,6 +443,7 @@
 
       <!-- PROJECT 2 -->
       <div class="project-card fade-up">
+        <div class="card-shine"></div>
         <div class="project-figures" title="Click to enlarge">
           <img src="assets/images/map_best3_nca.png"
                alt="SMYLE El Nino DJF 2015/16 best-member maps" loading="lazy" />
@@ -441,6 +487,7 @@
 
       <!-- PROJECT 3 -->
       <div class="project-card fade-up">
+        <div class="card-shine"></div>
         <div class="project-figures" title="Click to enlarge">
           <img src="assets/images/multivar_map_best3_nca.png"
                alt="Multi-observational precipitation product comparison" loading="lazy" />
