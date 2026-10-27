@@ -96,7 +96,8 @@
           <span class="ticker-sep">·····</span>
           <span class="ticker-item"><span class="ticker-dot blue-dot"></span>SMYLE ensemble · 40 members · DJF 2015/16</span>
           <span class="ticker-sep">·····</span>
-          <span class="ticker-item"><span class="ticker-dot"></span>iCAM6 water-tag · 1979–2014 · 35 yr simulation</span>
+          <span class="ticker-item"><span class="ticker-dot"></span>iCAM6 water-tag · 1979–2014 · 36 yr simulation</span>
+          <span class="ticker-item"><span class="ticker-dot"></span>WRF-WVT · iCAM6 · 1L/2L-DRM · moisture-tracking intercomparison</span>
           <span class="ticker-sep">·····</span>
           <span class="ticker-item"><span class="ticker-dot blue-dot"></span>Precipitation products · 8 datasets · CONUS</span>
           <span class="ticker-sep">·····</span>
@@ -263,8 +264,8 @@
           <div class="info-row">
             <div class="info-dot"></div>
             <div>
-              <strong>iCAM6 Water-Tagging</strong>
-              <span>SWUS precipitation source attribution · 1979–2014</span>
+              <strong>Moisture-Tracking Intercomparison</strong>
+              <span>WRF-WVT · iCAM6 water tags · 1L/2L-DRM · SW North America · 1979–2014</span>
             </div>
           </div>
           <div class="info-row">
@@ -409,21 +410,24 @@
         </div>
         <div class="project-body">
           <div class="project-tags">
+            <span class="tag tag-green">WRF-WVT</span>
             <span class="tag tag-green">iCAM6</span>
-            <span class="tag tag-green">CESM2</span>
-            <span class="tag">Water Tagging</span>
+            <span class="tag">DRM</span>
             <span class="tag">HPC</span>
           </div>
-          <h3 class="project-title">iCAM6 Water-Tagging &amp; SWUS Precipitation Attribution</h3>
+          <h3 class="project-title">Moisture Sources of Southwest North American Precipitation: Four Tracking Frameworks</h3>
           <p class="project-desc">
-            Isotope-enabled iCAM6 water-tagging diagnostics trace moisture pathways and quantify
-            source-region contributions to Southwest US precipitation across a 35-year historical
-            simulation. Annual and seasonal attribution maps reveal dominant moisture corridors.
+            Compares four moisture-tracking frameworks for the same sources, targets, and 36-year
+            period (1979–2014): online water tagging in WRF (WRF-WVT, multi-tag) and iCAM6, and offline
+            one- and two-layer dynamic recycling models driven by ERA5. Quantifies where the frameworks
+            agree on local, North Pacific, and Gulf of Mexico contributions and where they diverge.
+            Multi-tag WRF-WVT code:
+            <a href="https://github.com/hadizkia/WRF-WVT-multitag" target="_blank" rel="noopener">github.com/hadizkia/WRF-WVT-multitag</a>.
           </p>
           <div class="detail-grid">
             <div>
               <span class="detail-key">Model</span>
-              <span class="detail-val">iCAM6 (CESM2 isotope)</span>
+              <span class="detail-val">WRF-WVT · iCAM6 · 1L/2L-DRM</span>
             </div>
             <div>
               <span class="detail-key">Period</span>
@@ -438,7 +442,7 @@
               <span class="detail-val">Python · xarray · cartopy</span>
             </div>
           </div>
-          <p class="project-meta">Area-normalized attribution · PBS workflows · 35+ years of simulation output</p>
+          <p class="project-meta">Water tagging · back-trajectory recycling models · 36 years of simulation output</p>
         </div>
       </div>
 
@@ -769,6 +773,7 @@
       <p style="font-size:0.72rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:0.14em;color:var(--muted);margin-bottom:14px;">Full Tool Stack</p>
       <div class="tools-cloud fade-up">
         <span class="tool-chip">iCAM6</span>
+        <span class="tool-chip">WRF</span>
         <span class="tool-chip">CESM2</span>
         <span class="tool-chip">CAM6</span>
         <span class="tool-chip">ERA5</span>
