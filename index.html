@@ -97,6 +97,7 @@
           <span class="ticker-item"><span class="ticker-dot blue-dot"></span>SMYLE ensemble · 40 members · DJF 2015/16</span>
           <span class="ticker-sep">·····</span>
           <span class="ticker-item"><span class="ticker-dot"></span>iCAM6 water-tag · 1979–2014 · 36 yr simulation</span>
+          <span class="ticker-sep">·····</span>
           <span class="ticker-item"><span class="ticker-dot"></span>WRF-WVT · iCAM6 · 1L/2L-DRM · moisture-tracking intercomparison</span>
           <span class="ticker-sep">·····</span>
           <span class="ticker-item"><span class="ticker-dot blue-dot"></span>Precipitation products · 8 datasets · CONUS</span>
@@ -394,8 +395,9 @@
     <span class="section-label">Featured Research</span>
     <h2 class="section-title">Projects</h2>
     <p class="section-sub">
-      End-to-end atmospheric data pipelines — from raw model output and observational products
-      to validated regional metrics and quantitative signals.
+      Where atmospheric moisture and pollutants come from, and how well models capture it:
+      moisture-source attribution across modeling frameworks, building-resolving urban air quality,
+      and seasonal-forecast verification.
     </p>
 
     <div class="grid-3">
@@ -403,8 +405,8 @@
       <div class="project-card fade-up">
         <div class="card-shine"></div>
         <div class="project-figures" title="Click to enlarge">
-          <img src="assets/images/swus_tagged_precip_1979_conus_map.png"
-               alt="SWUS water-tagging source attribution map 1979" loading="lazy" />
+          <img src="assets/images/moisture_sources_targets_map.jpg"
+               alt="Source regions (North Pacific, Gulf of Mexico, local land) and the Western and Eastern Southwest North America target regions" loading="lazy" />
           <div class="fig-overlay"></div>
           <div class="fig-zoom">↗ enlarge</div>
         </div>
@@ -412,38 +414,43 @@
           <div class="project-tags">
             <span class="tag tag-green">WRF-WVT</span>
             <span class="tag tag-green">iCAM6</span>
-            <span class="tag">DRM</span>
-            <span class="tag">HPC</span>
+            <span class="tag">1L / 2L-DRM</span>
+            <span class="tag">ERA5</span>
           </div>
           <h3 class="project-title">Moisture Sources of Southwest North American Precipitation: Four Tracking Frameworks</h3>
           <p class="project-desc">
-            Compares four moisture-tracking frameworks for the same sources, targets, and 36-year
-            period (1979–2014): online water tagging in WRF (WRF-WVT, multi-tag) and iCAM6, and offline
-            one- and two-layer dynamic recycling models driven by ERA5. Quantifies where the frameworks
-            agree on local, North Pacific, and Gulf of Mexico contributions and where they diverge.
-            Multi-tag WRF-WVT code:
-            <a href="https://github.com/hadizkia/WRF-WVT-multitag" target="_blank" rel="noopener">github.com/hadizkia/WRF-WVT-multitag</a>
-            (a patch extending WRF-WVTs by Insua-Costa &amp; Miguez-Macho to up to ten simultaneous tags).
+            Where does the rain over the US Southwest and northern Mexico come from? I trace it to
+            local land, the North Pacific and the Gulf of Mexico with four independent methods:
+            online water tagging in WRF and in iCAM6, and offline one- and two-layer dynamic
+            recycling models driven by ERA5, all with the same sources, targets and 36 years.
+            The frameworks agree on the seasonal cycle of source contributions but differ in
+            magnitudes and year-to-year variability, so any single framework's attribution is best
+            read against the spread among them.
           </p>
           <div class="detail-grid">
             <div>
-              <span class="detail-key">Model</span>
-              <span class="detail-val">WRF-WVT · iCAM6 · 1L/2L-DRM</span>
+              <span class="detail-key">Frameworks</span>
+              <span class="detail-val">WRF-WVT · iCAM6 tags · 1L / 2L-DRM</span>
             </div>
             <div>
               <span class="detail-key">Period</span>
-              <span class="detail-val">1979–2014</span>
+              <span class="detail-val">1979–2014 (36 years)</span>
             </div>
             <div>
-              <span class="detail-key">System</span>
-              <span class="detail-val">Derecho / NCAR HPC</span>
+              <span class="detail-key">Sources</span>
+              <span class="detail-val">Local land · N. Pacific · Gulf of Mexico</span>
             </div>
             <div>
-              <span class="detail-key">Stack</span>
-              <span class="detail-val">Python · xarray · cartopy</span>
+              <span class="detail-key">Systems</span>
+              <span class="detail-val">NCAR Derecho · UH Carya</span>
             </div>
           </div>
-          <p class="project-meta">Water tagging · back-trajectory recycling models · 36 years of simulation output</p>
+          <p class="project-meta">
+            Manuscript in preparation · 2L-DRM ~150× cheaper than three WRF-WVT runs ·
+            code: <a href="https://github.com/hadizkia/WRF-WVT-multitag" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;">WRF-WVT-multitag</a>
+            (extends WRF-WVTs by Insua-Costa &amp; Miguez-Macho),
+            <a href="https://github.com/hadizkia/era5-to-wps" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;">era5-to-wps</a>
+          </p>
         </div>
       </div>
 
@@ -451,31 +458,79 @@
       <div class="project-card fade-up">
         <div class="card-shine"></div>
         <div class="project-figures" title="Click to enlarge">
+          <img src="assets/images/houston_cfd_geometry.jpg"
+               alt="Building-resolving model geometry of a Houston neighborhood: LiDAR buildings, vegetation, roads and a freeway" loading="lazy" />
+          <div class="fig-overlay"></div>
+          <div class="fig-zoom">↗ enlarge</div>
+        </div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="tag tag-green">WRF-Chem</span>
+            <span class="tag tag-green">OpenFOAM</span>
+            <span class="tag">LES</span>
+            <span class="tag">LiDAR</span>
+          </div>
+          <h3 class="project-title">Multi-Scale Urban Air Quality: WRF-Chem Coupled to OpenFOAM LES</h3>
+          <p class="project-desc">
+            A downscaling chain from regional chemistry to the street: WRF-Chem meteorology and
+            chemistry drive a building-resolving large-eddy simulation of a Houston neighborhood.
+            Buildings and vegetation come from LiDAR, freeway and biogenic emissions are injected
+            on the urban geometry, and a reacting OpenFOAM solver with SAPRC photochemistry resolves
+            NO₂ and O₃ between buildings through a full diurnal cycle.
+          </p>
+          <div class="detail-grid">
+            <div>
+              <span class="detail-key">Domain</span>
+              <span class="detail-val">600 × 600 × 100 m, Houston</span>
+            </div>
+            <div>
+              <span class="detail-key">Resolution</span>
+              <span class="detail-val">~1.25 m near the surface</span>
+            </div>
+            <div>
+              <span class="detail-key">Chemistry</span>
+              <span class="detail-val">SAPRC · reacting OpenFOAM</span>
+            </div>
+            <div>
+              <span class="detail-key">Validation</span>
+              <span class="detail-val">Wind tunnel · WRF-Chem</span>
+            </div>
+          </div>
+          <p class="project-meta">Manuscript with Y. Choi · LiDAR-to-mesh pipeline · runs on UH Carya HPC</p>
+        </div>
+      </div>
+
+      <!-- PROJECT 3 -->
+      <div class="project-card fade-up">
+        <div class="card-shine"></div>
+        <div class="project-figures" title="Click to enlarge">
           <img src="assets/images/map_best3_nca.png"
-               alt="SMYLE El Nino DJF 2015/16 best-member maps" loading="lazy" />
+               alt="SMYLE El Nino DJF 2015/16 best-member precipitation maps" loading="lazy" />
           <div class="fig-overlay"></div>
           <div class="fig-zoom">↗ enlarge</div>
         </div>
         <div class="project-body">
           <div class="project-tags">
             <span class="tag tag-green">CESM SMYLE</span>
-            <span class="tag tag-green">40-Member</span>
+            <span class="tag tag-green">Ensemble</span>
             <span class="tag">El Niño</span>
             <span class="tag">IOA · Corr</span>
           </div>
-          <h3 class="project-title">SMYLE DJF 2015/16 El Niño Seasonal Forecast Validation</h3>
+          <h3 class="project-title">SMYLE 2015/16 El Niño: Seasonal Forecast Verification</h3>
           <p class="project-desc">
-            Validates CESM SMYLE's 40-member ensemble against seven observational datasets
-            for the record 2015/16 El Niño. Member ranking by precipitation anomaly bias
-            reveals strongly divergent circulation and moisture skill across California sub-regions.
+            Why did the record 2015/16 El Niño leave California dry? I verify the CESM SMYLE
+            ensemble's winter forecast member by member against gauge, radar, satellite and
+            reanalysis precipitation, using the spread among those observations as the uncertainty
+            bar. Ranking members by precipitation skill shows that the best precipitation member is
+            not the one with the best moisture and circulation.
           </p>
           <div class="detail-grid">
             <div>
-              <span class="detail-key">Ensemble</span>
-              <span class="detail-val">SMYLE · 40 members</span>
+              <span class="detail-key">Season</span>
+              <span class="detail-val">DJF 2015/16</span>
             </div>
             <div>
-              <span class="detail-key">Obs Refs</span>
+              <span class="detail-key">Observations</span>
               <span class="detail-val">ERA5 · MRMS · CPC · GPCC · GPCP · IMERG</span>
             </div>
             <div>
@@ -490,74 +545,30 @@
           <p class="project-meta">Key finding: precipitation-best member ≠ moisture-best member</p>
         </div>
       </div>
-
-      <!-- PROJECT 3 -->
-      <div class="project-card fade-up">
-        <div class="card-shine"></div>
-        <div class="project-figures" title="Click to enlarge">
-          <img src="assets/images/multivar_map_best3_nca.png"
-               alt="Multi-observational precipitation product comparison" loading="lazy" />
-          <div class="fig-overlay"></div>
-          <div class="fig-zoom">↗ enlarge</div>
-        </div>
-        <div class="project-body">
-          <div class="project-tags">
-            <span class="tag">MRMS</span>
-            <span class="tag">IMERG</span>
-            <span class="tag">ERA5</span>
-            <span class="tag tag-green">8 Products</span>
-          </div>
-          <h3 class="project-title">Multi-Observational Precipitation Products Intercomparison</h3>
-          <p class="project-desc">
-            Systematic comparison of eight gridded precipitation datasets — MRMS, CPC, GPCC, GPCP,
-            IMERG, CRU, ERA5, and iCAM6 — characterizing bias, seasonality, and regional
-            agreement. Establishes observational uncertainty baselines for model verification.
-          </p>
-          <div class="detail-grid">
-            <div>
-              <span class="detail-key">Datasets</span>
-              <span class="detail-val">Radar · Gauge · Satellite · Reanalysis · GCM</span>
-            </div>
-            <div>
-              <span class="detail-key">Domain</span>
-              <span class="detail-val">CONUS · NCA · SCA · SWUS</span>
-            </div>
-            <div>
-              <span class="detail-key">Analysis</span>
-              <span class="detail-val">Annual cycle · Spatial mean · Unit harmonization</span>
-            </div>
-            <div>
-              <span class="detail-key">QA</span>
-              <span class="detail-val">Missing data · Regridding · Land masking</span>
-            </div>
-          </div>
-          <p class="project-meta">Observational spread used as uncertainty bound in model skill assessment</p>
-        </div>
-      </div>
     </div>
 
     <!-- ADDITIONAL FIGURES -->
     <div style="margin-top: 36px;">
-      <p style="font-size:0.75rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:0.14em;color:var(--muted);margin-bottom:18px;">Additional Results — iCAM6 Rainfall-Rate &amp; SMYLE Skill Diagnostics</p>
+      <p style="font-size:0.75rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:0.14em;color:var(--muted);margin-bottom:18px;">Additional Results — SMYLE 2015/16 Diagnostics</p>
       <div class="grid-2 fade-up">
         <div class="project-card">
           <div class="project-figures" title="Click to enlarge">
-            <img src="assets/images/fig1_annual_rr_swus.png" alt="iCAM6 annual rainfall rate SWUS" loading="lazy" />
+            <img src="assets/images/obs_precip_ranking_v3.png" alt="SMYLE DJF 2015/16 precipitation anomaly by member versus observations, Northern and Southern California" loading="lazy" />
             <div class="fig-overlay"></div>
             <div class="fig-zoom">↗ enlarge</div>
           </div>
           <div class="project-body">
-            <p class="project-desc" style="margin:0;font-size:0.83rem;">Annual mean rainfall-rate comparison: iCAM6 vs. observations over SWUS. All-precipitation and rain-only partitioning across regional boxes.</p>
+            <p class="project-desc" style="margin:0;font-size:0.83rem;">DJF 2015/16 precipitation anomaly, every SMYLE member against five gauge and satellite products, for Northern and Southern California and their north–south contrast.</p>
           </div>
         </div>
         <div class="project-card">
           <div class="project-figures" title="Click to enlarge">
-            <img src="assets/images/scenario_nca_monthly_corr_ioa.png" alt="SMYLE NCA monthly correlation and IOA" loading="lazy" />
+            <img src="assets/images/scenario_nca_monthly_corr_ioa.png" alt="SMYLE Northern California monthly correlation and index of agreement" loading="lazy" />
             <div class="fig-overlay"></div>
             <div class="fig-zoom">↗ enlarge</div>
           </div>
           <div class="project-body">
-            <p class="project-desc" style="margin:0;font-size:0.83rem;">Monthly IOA and spatial correlation for SMYLE NCA-ranked members. Best vs. worst precip member spread shown with all-member mean reference.</p>
+            <p class="project-desc" style="margin:0;font-size:0.83rem;">Monthly index of agreement and spatial correlation for Northern California: best and worst precipitation members against the ensemble mean.</p>
           </div>
         </div>
       </div>
