@@ -28,6 +28,7 @@
       <li><a href="#about">About</a></li>
       <li><a href="#signal">Research Impact</a></li>
       <li><a href="#projects">Projects</a></li>
+      <li><a href="#software">Software</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#publications">Publications</a></li>
       <li><a href="#contact" class="nav-cta">Contact</a></li>
@@ -553,6 +554,105 @@
           <div class="project-body">
             <p class="project-desc" style="margin:0;font-size:0.83rem;">Monthly IOA and spatial correlation for SMYLE NCA-ranked members. Best vs. worst precip member spread shown with all-member mean reference.</p>
           </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============================================================
+     SOFTWARE
+     ============================================================ -->
+<section id="software" class="section">
+  <div class="container">
+    <span class="section-label">Open Source</span>
+    <h2 class="section-title">Software</h2>
+    <p class="section-sub">
+      Tools built for my moisture-source research, released on
+      <a href="https://github.com/hadizkia" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;">GitHub →</a>
+    </p>
+
+    <div class="grid-2">
+      <!-- SOFTWARE 1 -->
+      <div class="project-card fade-up">
+        <div class="card-shine"></div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="tag tag-green">WRF</span>
+            <span class="tag tag-green">Fortran</span>
+            <span class="tag">Moisture Tracers</span>
+            <span class="tag">MIT</span>
+          </div>
+          <h3 class="project-title">WRF-WVT multi-tag</h3>
+          <p class="project-desc">
+            Runs WRF with up to 10 moisture tags at once, each with its own source region,
+            instead of one tag per run. Built on WRF-WVTs (Insua-Costa &amp; Miguez-Macho) as a
+            patch for WRF 4.3.3; every tag is bit-for-bit identical to its own single-tag run.
+          </p>
+          <div class="detail-grid">
+            <div>
+              <span class="detail-key">Tags per run</span>
+              <span class="detail-val">1–10 (more after a rebuild)</span>
+            </div>
+            <div>
+              <span class="detail-key">Cost</span>
+              <span class="detail-val">3 tags ≈ 1.6 single-tag runs</span>
+            </div>
+            <div>
+              <span class="detail-key">Physics</span>
+              <span class="detail-val">WSM6 · Kain–Fritsch · YSU</span>
+            </div>
+            <div>
+              <span class="detail-key">Validated</span>
+              <span class="detail-val">2 and 3 tags vs WRF-WVTs</span>
+            </div>
+          </div>
+          <p class="project-meta">
+            <a href="https://github.com/hadizkia/WRF-WVT-multitag" target="_blank" rel="noopener" class="btn btn-outline">github.com/hadizkia/WRF-WVT-multitag</a>
+          </p>
+        </div>
+      </div>
+
+      <!-- SOFTWARE 2 -->
+      <div class="project-card fade-up">
+        <div class="card-shine"></div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="tag tag-green">ERA5</span>
+            <span class="tag tag-green">WPS</span>
+            <span class="tag">Python</span>
+            <span class="tag">MIT</span>
+          </div>
+          <h3 class="project-title">era5-to-wps</h3>
+          <p class="project-desc">
+            Converts ERA5 from NCAR's NetCDF archive (RDA ds633.0) straight into WPS intermediate
+            files for metgrid, with no GRIB files or ungrib. Writes only a window around the WRF
+            domain and reproduces ungrib's derived fields.
+          </p>
+          <div class="detail-grid">
+            <div>
+              <span class="detail-key">Input</span>
+              <span class="detail-val">ERA5 0.25° NetCDF (RDA)</span>
+            </div>
+            <div>
+              <span class="detail-key">Output</span>
+              <span class="detail-val">WPS intermediate, v5</span>
+            </div>
+            <div>
+              <span class="detail-key">Stack</span>
+              <span class="detail-val">Python · numpy · xarray</span>
+            </div>
+            <div>
+              <span class="detail-key">Used for</span>
+              <span class="detail-val">ERA5-driven, nudged WRF runs</span>
+            </div>
+          </div>
+          <p class="project-meta">
+            <a href="https://github.com/hadizkia/era5-to-wps" target="_blank" rel="noopener" class="btn btn-outline">github.com/hadizkia/era5-to-wps</a>
+          </p>
         </div>
       </div>
     </div>
