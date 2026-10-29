@@ -731,7 +731,7 @@
             </div>
             <div>
               <span class="detail-key">Cost</span>
-              <span class="detail-val">3 tags ≈ 1.6 single-tag runs</span>
+              <span class="detail-val">3 tags ≈ 1.6 single-tag runs (not 3)</span>
             </div>
             <div>
               <span class="detail-key">Physics</span>
@@ -742,6 +742,16 @@
               <span class="detail-val">2 and 3 tags vs WRF-WVTs, incl. a full month (July 1980)</span>
             </div>
           </div>
+          <table class="cost-table">
+            <caption>One month (July 1980), 941 × 421 × 45 grid, 192 MPI tasks per run</caption>
+            <thead><tr><th></th><th>3 single-tag runs</th><th>one 3-tag run</th><th>change</th></tr></thead>
+            <tbody>
+              <tr><th>Wall time</th><td>21.2 h</td><td>11.3 h</td><td>−47 %</td></tr>
+              <tr><th>Core-hours</th><td>4,072</td><td>2,169</td><td>−47 %</td></tr>
+              <tr><th>Node-hours</th><td>84.8</td><td>45.2</td><td>−47 %</td></tr>
+              <tr><th>Output</th><td>195 GB</td><td>99 GB</td><td>−49 %</td></tr>
+            </tbody>
+          </table>
           <p class="project-meta">
             <a href="https://github.com/hadizkia/WRF-WVT-multitag" target="_blank" rel="noopener" class="btn btn-outline">github.com/hadizkia/WRF-WVT-multitag</a>
           </p>

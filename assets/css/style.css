@@ -1095,3 +1095,11 @@ footer a:hover { text-decoration: underline; }
   .market-cards { grid-template-columns: 1fr 1fr; }
   #weather-widget { bottom: 14px; right: 14px; width: 190px; }
 }
+
+/* compact numeric table inside project cards (WRF-WVT multi-tag cost) */
+.cost-table { width: 100%; border-collapse: collapse; margin: 0.9rem 0 1.1rem; font-size: 0.8rem; color: var(--text); }
+.cost-table caption { caption-side: top; text-align: left; color: var(--muted); font-size: 0.74rem; padding-bottom: 0.4rem; }
+.cost-table th, .cost-table td { padding: 0.32rem 0.5rem; border-bottom: 1px solid var(--border); text-align: right; font-variant-numeric: tabular-nums; }
+.cost-table thead th { color: var(--muted); font-weight: 500; font-size: 0.72rem; }
+.cost-table tbody th { text-align: left; color: var(--muted); font-weight: 500; }
+.cost-table td:last-child { color: var(--accent); font-weight: 600; }
